@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GRAY COLLECTIVE RECORDS</title>
+
+  <!-- FUENTE -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Paleta GRIS — protagonista */
+      --bg: #0a0a0a;          /* negro casi gris */
+      --bg-soft: #141414;     /* gris oscuro */
+      --bg-card: #1c1c1c;     /* gris medio oscuro */
+      --text: #e6e6e6;        /* gris claro (no blanco puro) */
+      --muted: #9a9a9a;       /* gris apagado */
+      --accent: #b3b3b3;     /* gris protagonista */
+      --accent-soft: #6b6b6b;/* gris secundario */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #050507, #0b0b0f);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px;
+    }
+
+    header h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    header span {
+      color: var(--accent);
+    }
+
+    header p {
+      max-width: 600px;
+      margin: 20px auto 40px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #050507;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    section p {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--bg-soft);
+      padding: 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1>GRAY <span>COLLECTIVE</span><br>RECORDS</h1>
+      <p>
+        Un espacio para artistas emocionales, oscuros y honestos.
+        Música que duele, pero se siente real.
+      </p>
+      <a href="#apply" class="btn">Aplicar a la disquera</a>
+    </div>
+  </header>
+
+  <!-- MANIFIESTO -->
+  <section>
+    <h2>¿Quiénes somos?</h2>
+    <p>
+      GRAY COLLECTIVE RECORDS nace para artistas que no encajan en lo comercial.
+      Creamos una estética emo, minimalista y elegante donde la emoción es lo primero.
+      No buscamos números, buscamos verdad.
+    </p>
+  </section>
+
+  <!-- VALORES -->
+  <section>
+    <h2>Nuestros pilares</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Emoción</h3>
+        <p>La música debe sentirse antes de entenderse.</p>
+      </div>
+      <div class="card">
+        <h3>Identidad</h3>
+        <p>No moldeamos artistas. Amplificamos su visión.</p>
+      </div>
+      <div class="card">
+        <h3>Colectivo</h3>
+        <p>Crecemos juntos o no crecemos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section id="apply">
+    <h2>Únete al colectivo</h2>
+    <p>
+      Si tu música es honesta, cruda y emocional,
+      queremos escucharla.
+    </p>
+    <br>
+    <a href="mailto:graycollectiverecords@gmail.com" class="btn">Enviar demo</a>
+  </section>
+
+  <footer>
+    © 2026 GRAY COLLECTIVE RECORDS — Independent label
+  </footer>
+
+</body>
+</html>
