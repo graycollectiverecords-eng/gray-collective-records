@@ -52,4 +52,152 @@
       color: var(--accent);
     }
 
-    he
+    header p {
+      max-width: 620px;
+      margin: 25px auto 45px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 30px;
+      border: 1px solid var(--accent);
+      color: var(--text);
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: #070707;
+    }
+
+    section {
+      padding: 90px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2.1rem;
+      margin-bottom: 25px;
+    }
+
+    section p {
+      color: var(--muted);
+      max-width: 720px;
+      font-size: 1.05rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+      margin-top: 45px;
+    }
+
+    .card {
+      background: var(--bg-soft);
+      padding: 32px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 45px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header>
+    <div>
+      <h1 class="logo">
+        GRAY <span>COLLECTIVE</span><br>RECORDS
+      </h1>
+
+      <p>
+        Una disquera independiente para artistas emocionales,
+        oscuros y honestos.
+      </p>
+
+      <a href="#apply" class="btn">Aplicar al colectivo</a>
+    </div>
+  </header>
+
+  <!-- VISIÓN -->
+  <section>
+    <h2>Nuestra visión</h2>
+    <p>
+      Nacimos para amplificar emociones reales.<br><br>
+
+      GRAY COLLECTIVE RECORDS es una disquera independiente creada
+      para artistas que priorizan la honestidad sobre la fórmula
+      y la identidad sobre las tendencias.<br><br>
+
+      Trabajamos con música oscura, introspectiva y emocional.
+      Música que no busca agradar a todos,
+      sino conectar profundamente con quienes están listos para escuchar.<br><br>
+
+      Creemos que cuando una obra es auténtica,
+      eventualmente encuentra su espacio,
+      su audiencia
+      y su impacto.<br><br>
+
+      No perseguimos perfección.
+      <strong>Construimos identidad.</strong><br><br>
+
+      Si sabes que tu música merece ser escuchada
+      y estás dispuesto a crecer a largo plazo,
+      este puede ser el lugar donde empiece a pasar.
+    </p>
+  </section>
+
+  <!-- PILARES -->
+  <section>
+    <h2>Nuestros pilares</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Emoción</h3>
+        <p>La música debe sentirse antes de analizarse.</p>
+      </div>
+      <div class="card">
+        <h3>Identidad</h3>
+        <p>No moldeamos artistas. Amplificamos su visión.</p>
+      </div>
+      <div class="card">
+        <h3>Colectivo</h3>
+        <p>Crecimiento real, construido en conjunto.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section id="apply">
+    <h2>Únete al colectivo</h2>
+    <p>
+      Si tu música es honesta, emocional y oscura,
+      queremos escucharla.
+    </p>
+    <br>
+    <a href="mailto:graycollectiverecords@gmail.com" class="btn">Enviar demo</a>
+  </section>
+
+  <footer>
+    © 2026 GRAY COLLECTIVE RECORDS — Independent label
+  </footer>
+
+</body>
+</html>
