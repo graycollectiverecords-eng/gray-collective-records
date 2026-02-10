@@ -3,22 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>GRAY COLLECTIVE RECORDS — Disquera independiente emo & alternativa</title>
   <meta name="description" content="GRAY COLLECTIVE RECORDS es una disquera independiente enfocada en música emocional, oscura y honesta. Amplificamos artistas con identidad real." />
 
   <!-- FUENTE -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Paleta GRIS — protagonista */
-      --bg: #0a0a0a;          /* negro casi gris */
-      --bg-soft: #141414;     /* gris oscuro */
-      --bg-card: #1c1c1c;     /* gris medio oscuro */
-      --text: #e6e6e6;        /* gris claro (no blanco puro) */
-      --muted: #9a9a9a;       /* gris apagado */
-      --accent: #b3b3b3;     /* gris protagonista */
-      --accent-soft: #6b6b6b;/* gris secundario */
+      --bg: #0a0a0a;
+      --bg-soft: #141414;
+      --bg-card: #1c1c1c;
+      --text: #e6e6e6;
+      --muted: #9a9a9a;
+      --accent: #b3b3b3;
     }
 
     * {
@@ -31,25 +30,56 @@
       font-family: 'Inter', sans-serif;
       background: radial-gradient(1200px 600px at 50% -10%, #2a2a2a 0%, #111111 45%, #080808 100%);
       color: var(--text);
-      line-height: 1.75;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      line-height: 1.8;
+      padding-top: 72px;
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* TOP BAR */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: #f2f2f2;
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      z-index: 100;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .topbar img {
+      height: 36px;
+      opacity: 0.95;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    }
+
+    .topbar img:hover {
+      transform: scale(1.05);
+      opacity: 1;
     }
 
     header {
-      min-height: 100vh;
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 40px 20px;
-      position: relative;
     }
 
     header h1 {
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(2.6rem, 6vw, 4.2rem);
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
     header span {
@@ -58,87 +88,87 @@
 
     header p {
       max-width: 600px;
-      margin: 20px auto 40px;
+      margin: 24px auto 42px;
       color: var(--muted);
-      font-size: 1.1rem;
+      font-size: 1.12rem;
+      font-weight: 400;
     }
 
     .btn {
       display: inline-block;
-      padding: 14px 28px;
+      padding: 15px 32px;
       border: 1px solid var(--accent);
       color: var(--text);
       text-decoration: none;
       border-radius: 999px;
       font-weight: 600;
+      letter-spacing: 0.5px;
       transition: all 0.3s ease;
     }
 
     .btn:hover {
       background: var(--accent);
       color: #050507;
+      transform: translateY(-2px);
     }
 
     section {
-      padding: 80px 20px;
+      padding: 90px 20px;
       max-width: 1000px;
       margin: auto;
     }
 
     section h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
+      font-size: 2.1rem;
+      margin-bottom: 28px;
+      letter-spacing: 1px;
     }
 
     section p {
       color: var(--muted);
-      max-width: 700px;
+      max-width: 720px;
+      font-size: 1.05rem;
+    }
+
+    .manifesto p strong {
+      color: var(--text);
+      font-weight: 600;
     }
 
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      gap: 22px;
+      margin-top: 45px;
     }
 
     .card {
       background: var(--bg-soft);
-      padding: 30px;
-      border-radius: 20px;
+      padding: 34px;
+      border-radius: 22px;
       border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
     }
 
     footer {
       text-align: center;
-      padding: 45px 20px;
+      padding: 50px 20px;
       color: var(--muted);
       font-size: 0.9rem;
       border-top: 1px solid rgba(255,255,255,0.05);
     }
-
-    .topbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      padding: 18px 32px;
-      background: linear-gradient(to bottom, rgba(10,10,10,0.9), rgba(10,10,10,0));
-      z-index: 10;
-    }
-
-    .topbar img {
-      height: 38px;
-      opacity: 0.9;
-    }
   </style>
 </head>
+
 <body>
 
-  <!-- TOP BAR / LOGO -->
+  <!-- TOP BAR LOGO -->
   <div class="topbar">
-    <!-- cuando subas el logo, reemplaza logo.png -->
-    <img src="logo.png" alt="Gray Collective Records logo" />
+    <img src="logosinfondo.png" alt="Gray Collective Records logo">
   </div>
 
   <!-- HERO -->
@@ -147,14 +177,14 @@
       <h1>GRAY <span>COLLECTIVE</span><br>RECORDS</h1>
       <p>
         Un espacio para artistas emocionales, oscuros y honestos.
-        Música que duele, pero se siente real.
+        Música que no persigue números, sino impacto.
       </p>
       <a href="#apply" class="btn">Aplicar a la disquera</a>
     </div>
   </header>
 
   <!-- MANIFIESTO -->
-  <section>
+  <section class="manifesto">
     <h2>Manifiesto</h2>
     <p>
       Nacimos para amplificar emociones reales.<br><br>
@@ -163,9 +193,9 @@
       que escriben desde la herida<br>
       y crean cuando el mundo guarda silencio.<br><br>
 
-      Aquí no creemos en fórmulas,<br>
-      ni en personajes,<br>
-      ni en música vacía.<br><br>
+      Aquí no creemos en fórmulas.<br>
+      Ni en personajes.<br>
+      Ni en música vacía.<br><br>
 
       Creemos que cuando algo es honesto,<br>
       eventualmente encuentra oídos.<br><br>
@@ -173,40 +203,14 @@
       No buscamos perfección.<br>
       <strong>Buscamos verdad.</strong><br><br>
 
-      Si tu música es oscura, emocional y real,<br>
-      si sabes que lo que haces merece ser escuchado<br>
-      aunque aún no lo sea,<br>
-      <strong>este puede ser el lugar donde empiece a pasar.</strong>
+      <strong>Este puede ser el lugar donde empiece a pasar.</strong>
     </p>
-  </section>
-
-  <!-- VALORES -->
-  <section>
-    <h2>Nuestros pilares</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Emoción</h3>
-        <p>La música debe sentirse antes de entenderse.</p>
-      </div>
-      <div class="card">
-        <h3>Identidad</h3>
-        <p>No moldeamos artistas. Amplificamos su visión.</p>
-      </div>
-      <div class="card">
-        <h3>Colectivo</h3>
-        <p>Crecemos juntos o no crecemos.</p>
-      </div>
-    </div>
   </section>
 
   <!-- APPLY -->
   <section id="apply">
     <h2>Únete al colectivo</h2>
-    <p>
-      Si tu música es honesta, cruda y emocional,
-      queremos escucharla.
-    </p>
-    <br>
+    <p>Si tu música es honesta, cruda y emocional, queremos escucharla.</p><br>
     <a href="mailto:graycollectiverecords@gmail.com" class="btn">Enviar demo</a>
   </section>
 
