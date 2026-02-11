@@ -2,46 +2,201 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>RipZue — Gray Collective Records</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RIPZUE — GRAY COLLECTIVE RECORDS</title>
+  
+  <link rel="icon" type="image/png" href="logosinfondo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ANIMACIÓN DE REVELADO CINEMATOGRÁFICO */
+    @keyframes revealContent {
+      0% { opacity: 0; transform: translateY(30px); filter: blur(15px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; }
+
     body {
+      font-family: 'Inter', sans-serif;
       background: #0a0a0a;
-      color: #e6e6e6;
-      font-family: Arial, sans-serif;
-      padding: 60px 20px;
-      max-width: 800px;
-      margin: auto;
+      color: #ffffff;
+      height: 100vh;
+      overflow: hidden; /* Mantiene la estética de pantalla fija */
+    }
+
+    /* BARRA SUPERIOR PREMIUM (GLASSMORPHISM) */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 72px;
+      background: rgba(242, 242, 242, 0.85); /* Blanco traslúcido */
+      backdrop-filter: blur(12px); /* Efecto cristalizado */
+      -webkit-backdrop-filter: blur(12px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px; z-index: 1000;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    /* FLECHA MINIMALISTA TIPO HILO */
+    .back-btn {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 22px;
+      font-weight: 200;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .back-btn:hover {
+      transform: translateX(-8px);
+      color: #808080;
+    }
+
+    .topbar img {
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .nav-menu { display: flex; gap: 40px; }
+    .nav-menu a {
+      text-decoration: none; color: #1a1a1a;
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 3px; position: relative; cursor: pointer;
+    }
+
+    /* VIDEO DE FONDO Y CAPA DE GRIS */
+    .video-container {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; z-index: -2;
+    }
+
+    video {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    .overlay {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Gradiente elegante */
+      z-index: -1;
+    }
+
+    /* CONTENIDO PRINCIPAL REVELADO */
+    main {
+      height: 100vh;
+      display: flex; flex-direction: column;
+      justify-content: center; padding: 0 10%;
+      animation: revealContent 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
     }
 
     h1 {
-      letter-spacing: 2px;
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(3rem, 10vw, 6rem);
+      letter-spacing: 15px; color: #808080;
+      text-transform: uppercase; margin-bottom: 20px;
     }
 
-    p {
-      color: #9a9a9a;
+    .artist-info {
+      max-width: 550px;
+      font-size: 13px; letter-spacing: 3px;
+      line-height: 2; color: #d4d4d4;
+      border-left: 1px solid rgba(128, 128, 128, 0.5);
+      padding-left: 25px;
     }
 
-    a {
-      color: #b3b3b3;
-      text-decoration: none;
+    /* BOTÓN AUDIO VALORANT STYLE */
+    .audio-toggle {
+      position: fixed; bottom: 40px; right: 40px;
+      width: 54px; height: 54px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.4s ease;
+      z-index: 100;
     }
+
+    .audio-toggle:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.08);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .audio-toggle svg {
+      width: 20px; height: 20px; fill: white; opacity: 0.7;
+    }
+
   </style>
 </head>
-
 <body>
 
-  <h1>RIPZUE</h1>
+  <nav class="topbar">
+    <div class="nav-left">
+      <a href="index.html" class="back-btn"> < </a>
+      <a href="index.html"><img src="logosinfondo.png" alt="Logo"></a>
+    </div>
+    <div class="nav-menu">
+      <a href="manifiesto.html">Manifiesto</a>
+      <a href="ripzue.html">Ripzue</a>
+    </div>
+  </nav>
 
-  <p>
-    Artista del colectivo.<br>
-    Esta página será su carta de presentación.<br><br>
+  <div class="video-container">
+    <video id="artistVideo" loop muted playsinline autoplay>
+      <source src="ripzuepag.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
 
-    Próximamente.
-  </p>
+  <main>
+    <h1>RIPZUE</h1>
+    <div class="artist-info">
+      EXPLORANDO LOS LÍMITES DEL SONIDO BAJO LA ESTÉTICA DEL GRIS.<br>
+      CARTA DE PRESENTACIÓN — PRÓXIMAMENTE.
+    </div>
+  </main>
 
-  <br>
-  <a href="index.html">← Volver</a>
+  <div class="audio-toggle" id="audioBtn">
+    <svg id="speakerIcon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+  </div>
+
+  <script>
+    const video = document.getElementById('artistVideo');
+    const audioBtn = document.getElementById('audioBtn');
+
+    audioBtn.addEventListener('click', () => {
+      if (video.muted) {
+        video.muted = false;
+        video.volume = 0;
+        // FADE IN DE SONIDO GRADUAL
+        let volumeFade = setInterval(() => {
+          if (video.volume < 0.95) {
+            video.volume += 0.05;
+          } else {
+            video.volume = 1;
+            clearInterval(volumeFade);
+          }
+        }, 150);
+        audioBtn.style.background = "rgba(255, 255, 255, 0.25)";
+      } else {
+        video.muted = true;
+        audioBtn.style.background = "rgba(255, 255, 255, 0.08)";
+      }
+    });
+  </script>
 
 </body>
 </html>
