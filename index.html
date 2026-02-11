@@ -1,52 +1,112 @@
-<img src="logosinfondo.png" alt="Gray Collective Records logo">
-  </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GRAY COLLECTIVE RECORDS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <!-- HERO -->
-  <header>
-    <div>
-      <h1>GRAY <span>COLLECTIVE</span><br>RECORDS</h1>
-      <p>
-        Un espacio para artistas emocionales, oscuros y honestos.
-        Música que no persigue números, sino impacto.
-      </p>
-      <a href="#apply" class="btn">Aplicar a la disquera</a>
+  <style>
+    /* Reset y Estilos Generales */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a; /* Fondo casi negro para que resalte el gris */
+      color: #e6e6e6;
+      padding-top: 64px; /* Espacio para que la barra fija no tape el contenido */
+    }
+
+    /* BARRA SUPERIOR */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: #f2f2f2; /* Gris muy claro/blanco como pediste */
+      display: flex;
+      align-items: center;
+      justify-content: space-between; /* Logo a la izq, Menú a la der */
+      padding: 0 40px;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* EFECTO DEL LOGO */
+    .topbar a.logo-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .topbar img {
+      height: 38px;
+      transition: all 0.5s ease; /* Transición suave */
+    }
+
+    .topbar img:hover {
+      filter: blur(4px); /* El efecto "nublado" */
+      opacity: 0.7;
+      transform: scale(1.05); /* Un pequeño toque de tamaño */
+    }
+
+    /* MENÚ DE NAVEGACIÓN */
+    .nav-menu {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #333; /* Gris oscuro para contraste en la barra clara */
+      font-weight: 600;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover {
+      color: #888; /* Se aclara al pasar el mouse */
+    }
+
+    /* CUERPO PRINCIPAL */
+    header {
+      min-height: calc(100vh - 64px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 8vw, 4rem);
+      font-weight: 700;
+      letter-spacing: -2px;
+      color: #808080; /* Gris base */
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="topbar">
+    <a href="index.html" class="logo-link">
+      <img src="logosinfondo.png" alt="Gray Collective Records logo">
+    </a>
+
+    <div class="nav-menu">
+      <a href="manifiesto.html">Manifiesto</a>
+      <a href="ripzue.html">Ripzue</a>
     </div>
+  </nav>
+
+  <header>
+    <h1>GRAY COLLECTIVE RECORDS</h1>
   </header>
-
-  <!-- MANIFIESTO -->
-  <section class="manifesto">
-    <h2>Manifiesto</h2>
-    <p>
-      Nacimos para amplificar emociones reales.<br><br>
-
-      GRAY COLLECTIVE RECORDS es un refugio para artistas que sienten demasiado,<br>
-      que escriben desde la herida<br>
-      y crean cuando el mundo guarda silencio.<br><br>
-
-      Aquí no creemos en fórmulas.<br>
-      Ni en personajes.<br>
-      Ni en música vacía.<br><br>
-
-      Creemos que cuando algo es honesto,<br>
-      eventualmente encuentra oídos.<br><br>
-
-      No buscamos perfección.<br>
-      <strong>Buscamos verdad.</strong><br><br>
-
-      <strong>Este puede ser el lugar donde empiece a pasar.</strong>
-    </p>
-  </section>
-
-  <!-- APPLY -->
-  <section id="apply">
-    <h2>Únete al colectivo</h2>
-    <p>Si tu música es honesta, cruda y emocional, queremos escucharla.</p><br>
-    <a href="mailto:graycollectiverecords@gmail.com" class="btn">Enviar demo</a>
-  </section>
-
-  <footer>
-    © 2026 GRAY COLLECTIVE RECORDS — Independent label
-  </footer>
 
 </body>
 </html>
