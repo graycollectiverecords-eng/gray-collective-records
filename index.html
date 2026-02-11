@@ -16,9 +16,10 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a; /* Fondo casi negro */
+      background: #0a0a0a;
       color: #e6e6e6;
       padding-top: 64px; 
+      overflow: hidden; /* Mantiene la estética limpia */
     }
 
     /* BARRA SUPERIOR */
@@ -28,7 +29,7 @@
       left: 0;
       width: 100%;
       height: 64px;
-      background: #f2f2f2; /* Gris muy claro */
+      background: #f2f2f2;
       display: flex;
       align-items: center;
       justify-content: space-between; 
@@ -37,7 +38,6 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    /* EFECTO DEL LOGO */
     .topbar a.logo-link {
       display: flex;
       align-items: center;
@@ -52,7 +52,6 @@
     .topbar img:hover {
       filter: blur(4px); 
       opacity: 0.7;
-      transform: scale(1.05);
     }
 
     /* MENÚ DE NAVEGACIÓN */
@@ -63,11 +62,11 @@
 
     .nav-menu a {
       text-decoration: none;
-      color: #333; /* Gris oscuro */
+      color: #333;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13px;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       transition: color 0.3s ease;
     }
 
@@ -79,20 +78,72 @@
     header {
       min-height: calc(100vh - 64px);
       display: flex;
+      flex-direction: column; /* Alinea título y luego botón */
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 0 20px;
+    }
+
+    .hero-container {
+      max-width: 900px; /* Evita que el nombre se desparrame por toda la pantalla */
     }
 
     h1 {
-      font-family: 'Cinzel Decorative', serif; /* Aplicando la nueva fuente */
-      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.8rem, 5vw, 3.5rem); /* Tamaño más moderado y elegante */
       font-weight: 700;
-      letter-spacing: 4px;
-      color: #808080; /* Gris base */
-      margin: 0;
+      letter-spacing: 6px;
+      color: #808080;
+      margin-bottom: 40px; /* Espacio para el botón */
       text-transform: uppercase;
+      line-height: 1.2;
     }
+
+    /* BOTÓN "ÚNETE" CON EFECTO LÍQUIDO */
+    .btn-unete {
+      position: relative;
+      display: inline-block;
+      padding: 15px 45px;
+      background-color: #808080; /* Color gris base */
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      overflow: hidden;
+      transition: color 0.3s ease;
+      z-index: 1;
+      border: none;
+    }
+
+    /* La "capa de agua" que sube */
+    .btn-unete::after {
+      content: '';
+      position: absolute;
+      bottom: -100%; /* Empieza afuera por abajo */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000; /* Se llena de negro */
+      transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); /* Curva elegante y rápida */
+      z-index: -1;
+      border-radius: 50% 50% 0 0; /* Efecto redondeado como burbuja/agua al subir */
+      transform: scaleX(1.5); /* Ancho extra para que parezca fluido */
+    }
+
+    .btn-unete:hover::after {
+      bottom: 0;
+      border-radius: 0; /* Se aplana al llegar arriba */
+      transform: scaleX(1);
+    }
+
+    .btn-unete:hover {
+      color: #f2f2f2;
+    }
+
   </style>
 </head>
 
@@ -110,7 +161,13 @@
   </nav>
 
   <header>
-    <h1>GRAY COLLECTIVE RECORDS</h1>
+    <div class="hero-container">
+      <h1>GRAY COLLECTIVE RECORDS</h1>
+      
+      <a href="manifiesto.html" class="btn-unete">
+        Unete
+      </a>
+    </div>
   </header>
 
 </body>
