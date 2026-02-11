@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GRAY COLLECTIVE RECORDS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
     /* Reset y Estilos Generales */
@@ -15,9 +16,9 @@
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #0a0a0a; /* Fondo casi negro para que resalte el gris */
+      background: #0a0a0a; /* Fondo casi negro */
       color: #e6e6e6;
-      padding-top: 64px; /* Espacio para que la barra fija no tape el contenido */
+      padding-top: 64px; 
     }
 
     /* BARRA SUPERIOR */
@@ -27,10 +28,10 @@
       left: 0;
       width: 100%;
       height: 64px;
-      background: #f2f2f2; /* Gris muy claro/blanco como pediste */
+      background: #f2f2f2; /* Gris muy claro */
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Logo a la izq, Menú a la der */
+      justify-content: space-between; 
       padding: 0 40px;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
@@ -40,17 +41,18 @@
     .topbar a.logo-link {
       display: flex;
       align-items: center;
+      text-decoration: none;
     }
 
     .topbar img {
       height: 38px;
-      transition: all 0.5s ease; /* Transición suave */
+      transition: all 0.5s ease; 
     }
 
     .topbar img:hover {
-      filter: blur(4px); /* El efecto "nublado" */
+      filter: blur(4px); 
       opacity: 0.7;
-      transform: scale(1.05); /* Un pequeño toque de tamaño */
+      transform: scale(1.05);
     }
 
     /* MENÚ DE NAVEGACIÓN */
@@ -61,7 +63,7 @@
 
     .nav-menu a {
       text-decoration: none;
-      color: #333; /* Gris oscuro para contraste en la barra clara */
+      color: #333; /* Gris oscuro */
       font-weight: 600;
       font-size: 14px;
       text-transform: uppercase;
@@ -70,7 +72,7 @@
     }
 
     .nav-menu a:hover {
-      color: #888; /* Se aclara al pasar el mouse */
+      color: #888;
     }
 
     /* CUERPO PRINCIPAL */
@@ -83,10 +85,13 @@
     }
 
     h1 {
-      font-size: clamp(2rem, 8vw, 4rem);
+      font-family: 'Cinzel Decorative', serif; /* Aplicando la nueva fuente */
+      font-size: clamp(2.5rem, 8vw, 5rem);
       font-weight: 700;
-      letter-spacing: -2px;
+      letter-spacing: 4px;
       color: #808080; /* Gris base */
+      margin: 0;
+      text-transform: uppercase;
     }
   </style>
 </head>
