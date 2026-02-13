@@ -2,49 +2,139 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Manifiesto — Gray Collective Records</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>MANIFIESTO — GRAY COLLECTIVE RECORDS</title>
+  
+  <link rel="icon" type="image/png" href="logosinfondo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      background: #0a0a0a;
-      color: #e6e6e6;
-      font-family: Arial, sans-serif;
-      padding: 60px 20px;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: auto;
+    /* ANIMACIONES SECUENCIALES */
+    @keyframes revealTitle {
+      0% { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+      100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    h1 {
+    @keyframes revealText {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a; /* Negro profundo y serio */
+      color: #ffffff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* BARRA SUPERIOR (COHERENCIA TOTAL) */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 72px;
+      background: rgba(242, 242, 242, 0.9);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; z-index: 1000;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    
+    .back-btn {
+      text-decoration: none; color: #1a1a1a;
+      font-size: 20px; font-weight: 200;
+      padding: 10px; transition: 0.3s;
+    }
+    .back-btn:hover { transform: translateX(-5px); color: #888; }
+
+    .topbar img { height: 35px; }
+
+    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu a {
+      text-decoration: none; color: #1a1a1a;
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
       letter-spacing: 2px;
     }
 
-    a {
-      color: #b3b3b3;
-      text-decoration: none;
+    /* CONTENEDOR DE TEXTO */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 10%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2rem, 8vw, 4rem);
+      letter-spacing: 12px;
+      color: #808080;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+      animation: revealTitle 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+
+    .content-text {
+      font-size: clamp(12px, 3vw, 15px);
+      line-height: 2.2;
+      letter-spacing: 2px;
+      color: #a0a0a0;
+      font-weight: 300;
+      animation: revealText 2s cubic-bezier(0.19, 1, 0.22, 1) 0.5s forwards;
+      opacity: 0; /* Empieza invisible para la animación */
+    }
+
+    .highlight {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    /* MOBILE OPTIMIZATION */
+    @media (max-width: 768px) {
+      main { padding: 0 12%; }
+      h1 { letter-spacing: 6px; margin-bottom: 30px; }
+      .content-text { line-height: 2; letter-spacing: 1.5px; }
     }
   </style>
 </head>
-
 <body>
 
-  <h1>MANIFIESTO</h1>
+  <nav class="topbar">
+    <div class="nav-left">
+      <a href="index.html" class="back-btn"> < </a>
+      <a href="index.html"><img src="logosinfondo.png" alt="Logo"></a>
+    </div>
+    <div class="nav-menu">
+      <a href="manifiesto.html">Manifiesto</a>
+      <a href="ripzue.html">Ripzue</a>
+    </div>
+  </nav>
 
-  <p>
-    Nacimos para amplificar emociones reales.<br><br>
+  <main>
+    <h1>MANIFIESTO</h1>
 
-    Gray Collective Records es un refugio para artistas que sienten demasiado,
-    que escriben desde la herida y crean cuando el mundo guarda silencio.<br><br>
+    <div class="content-text">
+      NACIMOS PARA AMPLIFICAR <span class="highlight">EMOCIONES REALES.</span><br><br>
 
-    No creemos en fórmulas.<br>
-    No creemos en personajes.<br>
-    Creemos en la verdad.<br><br>
+      GRAY COLLECTIVE RECORDS ES UN REFUGIO PARA ARTISTAS QUE SIENTEN DEMASIADO, 
+      QUE ESCRIBEN DESDE LA HERIDA Y CREAN CUANDO EL MUNDO GUARDA SILENCIO.<br><br>
 
-    Este puede ser el lugar donde empiece a pasar.
-  </p>
+      NO CREEMOS EN FÓRMULAS. NO CREEMOS EN PERSONAJES.<br>
+      CREEMOS EN LA <span class="highlight">VERDAD.</span><br><br>
 
-  <br>
-  <a href="index.html">← Volver</a>
+      ESTE PUEDE SER EL LUGAR DONDE EMPIECE A PASAR.
+    </div>
+  </main>
 
 </body>
 </html>
