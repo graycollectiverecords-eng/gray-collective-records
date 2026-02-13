@@ -54,33 +54,33 @@
     .topbar img { height: 38px; width: auto; cursor: pointer !important; }
 
     .nav-menu { display: flex; gap: 25px; }
+    
     .nav-menu a {
       text-decoration: none; 
-      color: #888; /* Color apagado para los no activos */
-      font-size: 10px; 
+      color: #1a1a1a; /* Color constante para ambos */
+      font-size: 10px; /* Tamaño constante */
       font-weight: 700; 
       text-transform: uppercase;
       letter-spacing: 2px;
       cursor: pointer !important;
       position: relative;
-      transition: color 0.3s ease;
+      transition: opacity 0.3s ease;
     }
 
-    .nav-menu a:hover { color: #1a1a1a; }
-
-    /* INDICADOR DE PÁGINA ACTUAL (Clase Activa) */
-    .nav-menu a.active {
-      color: #1a1a1a; /* Más oscuro para resaltar */
-    }
-
+    /* La línea indicadora solo para la clase activa */
     .nav-menu a.active::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -6px; /* Ajuste para que no choque con la letra */
       left: 0;
       width: 100%;
       height: 1px;
-      background: #1a1a1a; /* Hilo indicador */
+      background: #1a1a1a;
+    }
+
+    /* Efecto hover suave sin cambiar tamaño */
+    .nav-menu a:not(.active):hover {
+      opacity: 0.6;
     }
 
     /* 4. VIDEO DE FONDO */
