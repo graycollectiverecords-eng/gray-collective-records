@@ -22,13 +22,18 @@
       position: fixed;
     }
 
-    /* 2. ANIMACIONES */
+    /* 2. ANIMACIONES CINEMATOGRÁFICAS (IGUAL QUE INDEX) */
+    @keyframes fadeInBlur {
+      0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0); }
+    }
+
     @keyframes revealContent {
       0% { opacity: 0; transform: translateY(30px); filter: blur(10px); }
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* 3. BARRA SUPERIOR */
+    /* 3. BARRA SUPERIOR PREMIUM */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
@@ -37,51 +42,61 @@
       -webkit-backdrop-filter: blur(20px);
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 5%; z-index: 9999;
+      animation: fadeInBlur 1.2s ease-out forwards;
     }
 
-    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .nav-left { display: flex; align-items: center; gap: 15px; }
     
     .back-btn, .logo-link { 
       text-decoration: none; 
       display: flex; 
       align-items: center; 
-      cursor: pointer !important; 
+      cursor: pointer !important;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    .back-btn { color: #1a1a1a; font-size: 22px; padding: 10px; font-weight: 300; transition: transform 0.3s; }
-    .back-btn:hover { transform: translateX(-5px); }
+    /* Efecto difuminado en botones de navegación */
+    .back-btn:hover, .logo-link:hover { 
+      filter: blur(1px); 
+      opacity: 0.7;
+    }
 
+    .back-btn { color: #1a1a1a; font-size: 22px; padding: 5px; font-weight: 200; }
     .topbar img { height: 38px; width: auto; cursor: pointer !important; }
 
-    .nav-menu { display: flex; gap: 25px; }
+    .nav-menu { display: flex; gap: 30px; }
     
     .nav-menu a {
       text-decoration: none; 
-      color: #1a1a1a; /* Color constante para ambos */
-      font-size: 10px; /* Tamaño constante */
+      color: #1a1a1a; 
+      font-size: 11px; 
       font-weight: 700; 
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       cursor: pointer !important;
       position: relative;
-      transition: opacity 0.3s ease;
+      transition: all 0.4s ease;
     }
 
-    /* La línea indicadora solo para la clase activa */
+    /* Efecto de difuminado al pasar por los nombres (como en el Index) */
+    .nav-menu a:hover {
+      filter: blur(1.5px);
+      opacity: 0.6;
+    }
+
+    /* LÍNEA INDICADORA (HILO) PARA PÁGINA ACTUAL */
     .nav-menu a.active::after {
       content: '';
       position: absolute;
-      bottom: -6px; /* Ajuste para que no choque con la letra */
+      bottom: -8px;
       left: 0;
       width: 100%;
       height: 1px;
       background: #1a1a1a;
     }
-
-    /* Efecto hover suave sin cambiar tamaño */
-    .nav-menu a:not(.active):hover {
-      opacity: 0.6;
-    }
+    
+    /* Evitar que el difuminado afecte la línea activa en exceso */
+    .nav-menu a.active:hover { filter: none; opacity: 1; }
 
     /* 4. VIDEO DE FONDO */
     .video-wrapper {
@@ -98,7 +113,7 @@
       z-index: 2;
     }
 
-    /* 5. CONTENIDO */
+    /* 5. CONTENIDO CENTRAL */
     main {
       position: relative;
       height: 100vh;
@@ -112,7 +127,7 @@
     h1 {
       font-family: 'Cinzel Decorative', serif;
       font-size: clamp(3rem, 12vw, 6rem);
-      letter-spacing: 10px; color: #808080;
+      letter-spacing: 12px; color: #808080;
       text-transform: uppercase; margin-bottom: 20px;
     }
 
@@ -134,16 +149,18 @@
       display: flex; align-items: center; justify-content: center;
       z-index: 10000;
       cursor: pointer !important;
+      transition: all 0.4s ease;
     }
+    .audio-toggle:hover { transform: scale(1.1); background: rgba(255, 255, 255, 0.2); }
 
     .audio-toggle svg { width: 22px; height: 22px; fill: white; pointer-events: none; }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 5%; }
       .nav-menu { gap: 15px; }
+      .nav-menu a { letter-spacing: 1px; font-size: 9px; }
       main { padding: 0 8%; }
       h1 { letter-spacing: 6px; }
-      .audio-toggle { bottom: 30px; right: 30px; }
     }
   </style>
 </head>
@@ -183,6 +200,7 @@
     const video = document.getElementById('artistVideo');
     const audioBtn = document.getElementById('audioBtn');
 
+    // Reproducción al interactuar
     document.addEventListener('click', () => {
         if (video.paused) video.play();
     }, { once: true });
