@@ -9,10 +9,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* 0. CARGA DE FUENTE PERSONALIZADA */
+    /* 0. CARGA DE LA NUEVA FUENTE PERSONALIZADA */
     @font-face {
-      font-family: 'BlackBallTattoo';
-      src: url('Black Ball Tattoo Personal Use.ttf') format('truetype');
+      font-family: 'TribTwo';
+      src: url('TRIBTWO_.ttf') format('truetype');
       font-weight: normal;
       font-style: normal;
     }
@@ -57,8 +57,7 @@
     
     .back-btn, .logo-link { 
       text-decoration: none; 
-      display: flex; 
-      align-items: center; 
+      display: flex; align-items: center; 
       cursor: pointer !important;
       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
@@ -72,7 +71,7 @@
     .back-btn { color: #1a1a1a; font-size: 24px; font-weight: 300; }
     .topbar img { height: 42px; width: auto; }
 
-    /* MENÚ DERECHO (BARRA BLANCA - SE MANTIENE INTER) */
+    /* MENÚ DERECHO (BARRA BLANCA - SE MANTIENE INTER 11PX) */
     .nav-menu { display: flex; gap: 45px; }
     
     .nav-menu a {
@@ -87,34 +86,25 @@
       transition: all 0.4s ease;
     }
 
-    .nav-menu a:hover {
-      filter: blur(5px);
-      opacity: 0.6;
-    }
+    .nav-menu a:hover { filter: blur(5px); opacity: 0.6; }
 
     .nav-menu a::after {
       content: '';
       position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 0;
-      height: 2px;
+      bottom: -8px; left: 0;
+      width: 0; height: 2px;
       background: #333;
       transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
 
-    .nav-menu a.active::after {
-      width: 100%;
-    }
+    .nav-menu a.active::after { width: 100%; }
 
     /* 4. VIDEO DE FONDO */
     .video-wrapper {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%; z-index: 1;
     }
-
     video { width: 100%; height: 100%; object-fit: cover; }
-
     .overlay {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -122,7 +112,7 @@
       z-index: 2;
     }
 
-    /* 5. CONTENIDO CENTRAL */
+    /* 5. CONTENIDO CENTRAL - APLICANDO TRIBTWO_ */
     main {
       position: relative;
       height: 100vh;
@@ -133,15 +123,14 @@
       animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
     }
 
-    /* LETRAS GRANDES CON FUENTE TATTOO */
     h1 {
-      font-family: 'BlackBallTattoo', sans-serif;
-      font-size: clamp(4rem, 15vw, 10rem); /* Tamaño aumentado para fuente tattoo */
-      letter-spacing: 4px; 
+      font-family: 'TribTwo', sans-serif !important; 
+      font-size: clamp(4rem, 16vw, 11rem); 
+      letter-spacing: 2px; 
       color: #808080;
       text-transform: uppercase; 
-      margin-bottom: 10px;
-      line-height: 1;
+      margin-bottom: 15px;
+      line-height: 0.9;
     }
 
     .artist-info {
@@ -172,7 +161,7 @@
       .nav-menu { gap: 20px; }
       .nav-menu a { letter-spacing: 1px; font-size: 9px; }
       main { padding: 0 8%; }
-      h1 { font-size: 5rem; letter-spacing: 2px; }
+      h1 { font-size: 5rem; letter-spacing: 1px; }
     }
   </style>
 </head>
@@ -222,12 +211,8 @@
         video.muted = false;
         video.volume = 0;
         let volumeFade = setInterval(() => {
-          if (video.volume < 0.9) {
-            video.volume += 0.1;
-          } else {
-            video.volume = 1;
-            clearInterval(volumeFade);
-          }
+          if (video.volume < 0.9) { video.volume += 0.1; } 
+          else { video.volume = 1; clearInterval(volumeFade); }
         }, 100);
         audioBtn.style.background = "rgba(255, 255, 255, 0.4)";
       } else {
