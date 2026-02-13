@@ -14,7 +14,7 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background: #000; /* Fondo negro puro mientras carga */
+      background: #000;
       color: #ffffff;
       height: 100vh;
       width: 100vw;
@@ -36,18 +36,51 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; z-index: 9999; /* Máxima prioridad */
+      padding: 0 5%; z-index: 9999;
     }
 
     .nav-left { display: flex; align-items: center; gap: 10px; }
-    .back-btn { text-decoration: none; color: #1a1a1a; font-size: 22px; padding: 10px; font-weight: 300; }
-    .topbar img { height: 38px; width: auto; }
+    
+    .back-btn, .logo-link { 
+      text-decoration: none; 
+      display: flex; 
+      align-items: center; 
+      cursor: pointer !important; 
+    }
 
-    .nav-menu { display: flex; gap: 20px; }
+    .back-btn { color: #1a1a1a; font-size: 22px; padding: 10px; font-weight: 300; transition: transform 0.3s; }
+    .back-btn:hover { transform: translateX(-5px); }
+
+    .topbar img { height: 38px; width: auto; cursor: pointer !important; }
+
+    .nav-menu { display: flex; gap: 25px; }
     .nav-menu a {
-      text-decoration: none; color: #1a1a1a;
-      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      text-decoration: none; 
+      color: #888; /* Color apagado para los no activos */
+      font-size: 10px; 
+      font-weight: 700; 
+      text-transform: uppercase;
       letter-spacing: 2px;
+      cursor: pointer !important;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav-menu a:hover { color: #1a1a1a; }
+
+    /* INDICADOR DE PÁGINA ACTUAL (Clase Activa) */
+    .nav-menu a.active {
+      color: #1a1a1a; /* Más oscuro para resaltar */
+    }
+
+    .nav-menu a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #1a1a1a; /* Hilo indicador */
     }
 
     /* 4. VIDEO DE FONDO */
@@ -89,7 +122,7 @@
       border-left: 1px solid rgba(255,255,255,0.3); padding-left: 20px;
     }
 
-    /* 6. BOTÓN AUDIO (ESTILO VALORANT) */
+    /* 6. BOTÓN AUDIO */
     .audio-toggle {
       position: fixed; bottom: 40px; right: 40px;
       width: 55px; height: 55px;
@@ -106,8 +139,8 @@
     .audio-toggle svg { width: 22px; height: 22px; fill: white; pointer-events: none; }
 
     @media (max-width: 768px) {
-      .topbar { padding: 0 4%; }
-      .nav-menu { display: none; } /* En móvil ocultamos menú para limpieza, o lo dejas si quieres */
+      .topbar { padding: 0 5%; }
+      .nav-menu { gap: 15px; }
       main { padding: 0 8%; }
       h1 { letter-spacing: 6px; }
       .audio-toggle { bottom: 30px; right: 30px; }
@@ -118,12 +151,12 @@
 
   <nav class="topbar">
     <div class="nav-left">
-      <a href="index.html" class="back-btn" style="cursor: pointer;"> < </a>
-      <a href="index.html" style="cursor: pointer;"><img src="logosinfondo.png" alt="Logo"></a>
+      <a href="index.html" class="back-btn"> < </a>
+      <a href="index.html" class="logo-link"><img src="logosinfondo.png" alt="Logo"></a>
     </div>
     <div class="nav-menu">
       <a href="manifiesto.html">Manifiesto</a>
-      <a href="ripzue.html">Ripzue</a>
+      <a href="ripzue.html" class="active">Ripzue</a>
     </div>
   </nav>
 
@@ -142,7 +175,7 @@
     </div>
   </main>
 
-  <div class="audio-toggle" id="audioBtn" style="cursor: pointer;">
+  <div class="audio-toggle" id="audioBtn">
     <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
   </div>
 
@@ -150,7 +183,6 @@
     const video = document.getElementById('artistVideo');
     const audioBtn = document.getElementById('audioBtn');
 
-    // Asegurar que el video intente reproducirse al primer toque si el autoplay falla
     document.addEventListener('click', () => {
         if (video.paused) video.play();
     }, { once: true });
