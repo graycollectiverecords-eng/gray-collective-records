@@ -6,7 +6,7 @@
   <title>Gray Collective Records</title>
   
   <link rel="icon" type="image/png" href="logosinfondo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     /* 0. FUENTES */
@@ -41,11 +41,11 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* 3. BARRA SUPERIOR (LOGO CENTRADO) */
+    /* 3. BARRA SUPERIOR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
-      background: rgba(30, 30, 30, 0.85); 
+      background: rgba(20, 20, 20, 0.85); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       display: grid;
@@ -53,7 +53,7 @@
       align-items: center;
       padding: 0 60px;
       z-index: 1000;
-      border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+      border-bottom: 1px solid rgba(212, 212, 212, 0.1);
       animation: fadeInBlur 1.2s ease-out forwards;
     }
 
@@ -75,23 +75,28 @@
     
     .nav-menu a {
       text-decoration: none; 
-      color: #a0a0a0; 
+      color: #d4d4d4; /* UNIFICADO: Gris Platino */
       font-size: 11px;
       font-weight: 600;
-      text-transform: uppercase; /* El menú sí puede ir en mayúsculas por ser fuente Inter (limpia) */
+      text-transform: uppercase;
       letter-spacing: 3px;
       position: relative;
       transition: all 0.4s ease;
+      opacity: 0.85;
     }
 
-    .nav-menu a:hover { color: #d1d1d1; filter: blur(1px); }
+    .nav-menu a:hover { 
+      color: #ffffff; 
+      opacity: 1;
+      filter: drop-shadow(0 0 5px rgba(212, 212, 212, 0.5));
+    }
 
     .nav-menu a::after {
       content: '';
       position: absolute;
       bottom: -8px; left: 0;
-      width: 0; height: 2px;
-      background: #808080;
+      width: 0; height: 1.5px;
+      background: #d4d4d4;
       transition: width 0.4s cubic-bezier(0.25, 1, 0.5, 1);
     }
     .nav-menu a:hover::after { width: 100%; }
@@ -105,7 +110,7 @@
     .overlay {
       position: absolute; top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.9));
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.9));
       z-index: 2;
     }
 
@@ -127,29 +132,29 @@
       font-size: clamp(2.5rem, 8vw, 6.5rem);
       font-weight: normal;
       letter-spacing: 1px;
-      /* GRIS PLATINO + GLOW para jerarquía visual */
-      color: #d1d1d1; 
-      text-shadow: 0 0 15px rgba(128, 128, 128, 0.4);
-      margin-bottom: 50px;
+      color: #d4d4d4; /* UNIFICADO: Gris Platino */
+      text-shadow: 0 0 20px rgba(128, 128, 128, 0.3);
+      margin-bottom: 55px;
       line-height: 1.1;
-      text-transform: none; /* AQUÍ: Quitamos las mayúsculas forzadas para legibilidad */
+      text-transform: none; 
     }
 
-    /* 6. BOTÓN "ÚNETE" - SÓLIDO Y LEGIBLE */
+    /* 6. BOTÓN "ÚNETE" - MÁXIMA JERARQUÍA */
     .btn-unete {
       position: relative;
       display: inline-block;
-      padding: 18px 55px;
-      background-color: #808080; /* Gris de marca sólido */
-      color: #000000; /* Texto negro para máximo contraste sobre el gris */
+      padding: 18px 60px;
+      background-color: #d4d4d4; /* UNIFICADO: Fondo Gris Platino */
+      color: #000000; /* Texto Negro para contraste total */
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800; /* Más grueso para legibilidad */
       font-size: 13px;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      border: 1px solid #a0a0a0;
+      border: 1px solid #ffffff;
       overflow: hidden;
-      transition: all 0.4s ease;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .btn-unete::after {
@@ -157,7 +162,7 @@
       position: absolute;
       bottom: -100%; left: -10%;
       width: 120%; height: 100%;
-      background-color: #d1d1d1;
+      background-color: #ffffff; /* Brillo blanco al pasar el mouse */
       transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       z-index: -1;
       border-radius: 50% 50% 0 0;
@@ -166,15 +171,16 @@
     .btn-unete:hover::after { bottom: 0; border-radius: 0; }
     .btn-unete:hover { 
       color: #000;
-      letter-spacing: 6px;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(128, 128, 128, 0.2);
+      letter-spacing: 7px;
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(212, 212, 212, 0.2);
     }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; grid-template-columns: 1fr 2fr 1fr; }
       .nav-menu { gap: 15px; }
       h1 { font-size: 3.2rem; }
+      .btn-unete { padding: 15px 40px; font-size: 11px; }
     }
   </style>
 </head>
