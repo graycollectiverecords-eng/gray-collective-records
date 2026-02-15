@@ -30,11 +30,22 @@
       overflow-x: hidden;
     }
 
-    /* 2. BARRA SUPERIOR (Misma que index.html) */
+    /* 2. ANIMACIONES */
+    @keyframes topbarEntry {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 3. BARRA SUPERIOR (Con animación de entrada y suavidad) */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
-      background: rgba(20, 20, 20, 0.85); 
+      background: rgba(10, 10, 10, 0.85); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       display: flex;
@@ -42,7 +53,17 @@
       align-items: center;
       padding: 0 60px;
       z-index: 1000;
-      border-bottom: 1px solid rgba(212, 212, 212, 0.1);
+      border-bottom: 1px solid rgba(212, 212, 212, 0.05);
+      
+      /* Animación de entrada */
+      animation: topbarEntry 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      /* Transición de salida/estado suave */
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .topbar:hover {
+      background: rgba(20, 20, 20, 0.95);
+      border-bottom: 1px solid rgba(212, 212, 212, 0.2);
     }
 
     .logo-link { display: flex; justify-content: center; align-items: center; text-decoration: none; }
@@ -52,84 +73,84 @@
       width: auto; 
       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
     }
+
     .logo-link:hover img { 
-      filter: blur(5px) grayscale(100%);
-      opacity: 0.6;
-      transform: scale(0.95);
+      filter: blur(3px) grayscale(100%);
+      opacity: 0.7;
+      transform: scale(0.92);
     }
 
-    /* 3. CONTENIDO PRINCIPAL */
+    /* 4. CONTENIDO PRINCIPAL */
     .main-wrapper {
-      padding-top: 140px; /* Espacio para la topbar */
+      padding-top: 140px; 
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: 50px;
+      padding-bottom: 80px;
     }
 
     /* SECCIÓN MANIFIESTO */
     .manifesto-section {
-      max-width: 600px;
+      max-width: 500px;
       text-align: center;
-      margin-bottom: 80px;
-      animation: fadeIn 2s ease;
+      margin-bottom: 60px;
+      animation: fadeIn 2s ease forwards;
       padding: 0 20px;
     }
 
     .manifesto-section h2 {
       font-family: 'OldLondon', serif;
-      font-size: 2.2rem;
-      margin-bottom: 20px;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
       color: #ffffff;
       letter-spacing: 2px;
     }
 
     .manifesto-section p {
-      font-size: 13px;
+      font-size: 11px;
       line-height: 1.8;
-      letter-spacing: 1px;
-      color: #888;
-      font-style: italic;
+      letter-spacing: 2px;
+      color: #555;
+      text-transform: uppercase;
     }
 
-    /* LISTA DE ARTISTAS CON FUENTE TRIBTWO */
+    /* 5. LISTA DE ARTISTAS (Tamaño corregido y escalable) */
     .roster-container {
       width: 100%;
-      max-width: 900px;
+      max-width: 800px;
       text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
     }
 
     .artist-link {
-      display: block;
-      font-family: 'TribTwo', sans-serif; /* Usando tu fuente específica */
-      font-size: clamp(3rem, 12vw, 7rem);
+      display: inline-block;
+      font-family: 'TribTwo', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem); /* Tamaño reducido para mejor escala */
       font-weight: normal;
       text-decoration: none;
       color: transparent; 
       text-transform: uppercase;
-      margin: 20px 0;
-      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-      -webkit-text-stroke: 1px #333;
-      line-height: 1;
+      margin: 10px 0;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      -webkit-text-stroke: 1px #222;
+      line-height: 1.1;
     }
 
     .artist-link:hover {
       color: #ffffff;
       -webkit-text-stroke: 1px #ffffff;
-      letter-spacing: 18px; /* Efecto de estiramiento brutal */
-      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.4));
-      transform: scale(1.05);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+      letter-spacing: 10px; /* Estiramiento más elegante */
+      filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.3));
+      transform: scale(1.03);
     }
 
     @media (max-width: 768px) {
-      .topbar { padding: 0 25px; }
-      .artist-link:hover { letter-spacing: 6px; }
-      .manifesto-section h2 { font-size: 1.8rem; }
+      .topbar { padding: 0 25px; height: 65px; }
+      .artist-link { font-size: 2.8rem; }
+      .artist-link:hover { letter-spacing: 4px; }
+      .manifesto-section h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -143,15 +164,15 @@
 
   <div class="main-wrapper">
     <section class="manifesto-section">
-      <h2>Manifiesto</h2>
+      <h2>El Colectivo</h2>
       <p>
-        "Aquí pones tu texto del manifiesto. Algo corto y poderoso que defina el alma de Gray Collective Records. El refugio de los sonidos olvidados."
+        "Donde las sombras encuentran su eco y el silencio se vuelve ruido."
       </p>
     </section>
 
     <div class="roster-container">
       <a href="ripzue.html" class="artist-link">Ripzue</a>
-    </div>
+      </div>
   </div>
 
 </body>
