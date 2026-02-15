@@ -18,6 +18,10 @@
       font-family: 'TribTwo';
       src: url('TRIBTWO_.ttf') format('truetype');
     }
+    @font-face {
+      font-family: 'HelpMe';
+      src: url('HelpMe.ttf') format('truetype');
+    }
 
     /* 1. RESET Y BASE */
     * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; -webkit-tap-highlight-color: transparent; }
@@ -41,7 +45,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3. BARRA SUPERIOR (Sincronizada con index.html) */
+    /* 3. BARRA SUPERIOR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
@@ -54,8 +58,6 @@
       padding: 0 60px;
       z-index: 1000;
       border-bottom: 1px solid rgba(212, 212, 212, 0.1);
-      
-      /* DURACIÓN CORREGIDA: 1.2s para coincidir con la principal */
       animation: fadeInBlurTopbar 1.2s ease-out forwards;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -88,11 +90,10 @@
       padding-bottom: 80px;
     }
 
-    /* SECCIÓN MANIFIESTO */
     .manifesto-section {
       max-width: 500px;
       text-align: center;
-      margin-bottom: 60px;
+      margin-bottom: 80px;
       animation: fadeIn 2s ease forwards;
       padding: 0 20px;
     }
@@ -113,43 +114,60 @@
       text-transform: uppercase;
     }
 
-    /* 5. LISTA DE ARTISTAS */
+    /* 5. LISTA DE ARTISTAS (Layout Horizontal) */
     .roster-container {
-      width: 100%;
-      max-width: 800px;
-      text-align: center;
+      width: 90%;
+      max-width: 1200px;
       display: flex;
-      flex-direction: column;
-      gap: 5px;
+      flex-direction: row; /* Alineación a los lados */
+      justify-content: center;
+      align-items: center;
+      gap: 100px; /* Espacio entre ellos */
+      flex-wrap: wrap; /* Para que en móvil se pongan uno abajo del otro */
     }
 
     .artist-link {
       display: inline-block;
-      font-family: 'TribTwo', sans-serif;
-      font-size: clamp(2.5rem, 8vw, 4.5rem); 
-      font-weight: normal;
       text-decoration: none;
       color: transparent; 
       text-transform: uppercase;
-      margin: 10px 0;
       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
       -webkit-text-stroke: 1px #222;
-      line-height: 1.1;
+      line-height: 1;
+      text-align: center;
+    }
+
+    /* Estilo específico Ripzue */
+    .ripzue-font {
+      font-family: 'TribTwo', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+    }
+
+    /* Estilo específico Lil Natsu */
+    .natsu-font {
+      font-family: 'HelpMe', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: -2px; /* HelpMe suele ser muy abierta, esto la hace más agresiva */
     }
 
     .artist-link:hover {
       color: #d4d4d4; 
       -webkit-text-stroke: 1px #d4d4d4; 
-      letter-spacing: 10px;
+      letter-spacing: 12px;
       filter: drop-shadow(0 0 25px rgba(212, 212, 212, 0.3));
-      transform: scale(1.03);
+      transform: scale(1.08);
+    }
+
+    /* Ajuste de hover para Lil Natsu (menos espacio entre letras para que no se rompa la fuente) */
+    .natsu-font:hover {
+      letter-spacing: 4px;
     }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; height: 65px; }
-      .artist-link { font-size: 2.8rem; }
+      .roster-container { gap: 40px; flex-direction: column; }
+      .artist-link { font-size: 3rem; }
       .artist-link:hover { letter-spacing: 4px; }
-      .manifesto-section h2 { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -170,7 +188,9 @@
     </section>
 
     <div class="roster-container">
-      <a href="ripzue.html" class="artist-link">Ripzue</a>
+      <a href="ripzue.html" class="artist-link ripzue-font">Ripzue</a>
+      
+      <a href="#" class="artist-link natsu-font">Lil Natsu</a>
     </div>
   </div>
 
