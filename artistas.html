@@ -31,9 +31,9 @@
     }
 
     /* 2. ANIMACIONES */
-    @keyframes topbarEntry {
-      0% { transform: translateY(-100%); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
+    @keyframes fadeInBlurTopbar {
+      0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
+      100% { opacity: 1; filter: blur(0); transform: translateY(0); }
     }
 
     @keyframes fadeIn {
@@ -41,11 +41,11 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 3. BARRA SUPERIOR (Unificada con animación de entrada y suavidad) */
+    /* 3. BARRA SUPERIOR (Sincronizada con index.html) */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
-      background: rgba(10, 10, 10, 0.85); 
+      background: rgba(20, 20, 20, 0.85); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       display: flex;
@@ -53,11 +53,10 @@
       align-items: center;
       padding: 0 60px;
       z-index: 1000;
-      border-bottom: 1px solid rgba(212, 212, 212, 0.05);
+      border-bottom: 1px solid rgba(212, 212, 212, 0.1);
       
-      /* Animación de entrada igual a la principal */
-      animation: topbarEntry 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      /* Transición para que no sea seca al interactuar */
+      /* DURACIÓN CORREGIDA: 1.2s para coincidir con la principal */
+      animation: fadeInBlurTopbar 1.2s ease-out forwards;
       transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -102,7 +101,7 @@
       font-family: 'OldLondon', serif;
       font-size: 1.8rem;
       margin-bottom: 15px;
-      color: #d4d4d4; /* Color de marca */
+      color: #d4d4d4; 
       letter-spacing: 2px;
     }
 
@@ -114,7 +113,7 @@
       text-transform: uppercase;
     }
 
-    /* 5. LISTA DE ARTISTAS (Color #d4d4d4 en hover) */
+    /* 5. LISTA DE ARTISTAS */
     .roster-container {
       width: 100%;
       max-width: 800px;
@@ -139,8 +138,8 @@
     }
 
     .artist-link:hover {
-      color: #d4d4d4; /* Color corregido */
-      -webkit-text-stroke: 1px #d4d4d4; /* Color corregido */
+      color: #d4d4d4; 
+      -webkit-text-stroke: 1px #d4d4d4; 
       letter-spacing: 10px;
       filter: drop-shadow(0 0 25px rgba(212, 212, 212, 0.3));
       transform: scale(1.03);
