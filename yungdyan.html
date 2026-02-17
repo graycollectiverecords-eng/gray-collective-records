@@ -28,7 +28,41 @@
       position: fixed;
     }
 
-    /* 2. ANIMACIONES */
+    /* 2. VIDEO DE FONDO */
+    .video-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .video-background video {
+      min-width: 100%; 
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+
+    /* Capa oscura para legibilidad */
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Oscurece el video un 50% */
+      z-index: 2;
+    }
+
+    /* 3. ANIMACIONES */
     @keyframes fadeInBlurTopbar {
       0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
       100% { opacity: 1; filter: blur(0); transform: translateY(0); }
@@ -39,11 +73,11 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* 3. BARRA SUPERIOR */
+    /* 4. BARRA SUPERIOR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
-      background: rgba(20, 20, 20, 0.85); 
+      background: rgba(20, 20, 20, 0.6); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       display: grid;
@@ -87,6 +121,7 @@
       margin-bottom: 40px; 
       line-height: 0.8;
       letter-spacing: 2px;
+      text-shadow: 0 0 30px rgba(0,0,0,0.8);
     }
 
     .artist-info {
@@ -94,17 +129,18 @@
       font-size: 11px;
       letter-spacing: 3px;
       line-height: 2.2; 
-      color: #808080;
-      border-left: 1px solid #d4d4d4;
+      color: #d4d4d4; /* Color un poco más claro para destacar sobre video */
+      border-left: 2px solid #d4d4d4;
       padding-left: 25px;
       text-transform: uppercase;
+      background: rgba(0,0,0,0.2);
     }
 
     /* 6. BARRA DE REDES SOCIALES */
     .social-footer {
       position: fixed;
       bottom: 0; left: 0; width: 100%; height: 85px;
-      background: rgba(10, 10, 10, 0.9); 
+      background: rgba(10, 10, 10, 0.7); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
       display: flex; align-items: center; justify-content: center;
@@ -114,27 +150,25 @@
       padding: 0 20px;
     }
 
-    .social-footer a { display: flex; align-items: center; text-decoration: none; }
-    .social-footer svg {
-      width: 20px; height: 20px;
-      fill: #666;
-      transition: all 0.4s ease;
-    }
-    .social-footer a:hover svg {
-      fill: #ffffff;
-      transform: translateY(-3px);
-      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
-    }
+    .social-footer svg { width: 20px; height: 20px; fill: #aaa; transition: all 0.4s ease; }
+    .social-footer a:hover svg { fill: #ffffff; transform: translateY(-3px); }
 
     @media (max-width: 768px) {
-      .topbar { padding: 0; justify-content: center; } 
+      .topbar { padding: 0 20px; } 
       h1 { font-size: 3.8rem; }
       .social-footer { gap: 15px; }
-      .social-footer svg { width: 18px; height: 18px; }
     }
   </style>
 </head>
 <body>
+
+  <div class="video-background">
+    <video autoplay muted loop playsinline>
+      <source src="Yungdyanvideopag.mp4" type="video/mp4">
+      Tu navegador no soporta video.
+    </video>
+    <div class="video-overlay"></div>
+  </div>
 
   <nav class="topbar">
     <div class="nav-left">
@@ -157,28 +191,16 @@
     <a href="#" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.49 17.333c-.217.335-.654.438-.99.22-2.73-1.667-6.17-2.046-10.224-1.12-.382.088-.765-.15-.853-.532-.088-.382.15-.765.532-.853 4.43-1.012 8.238-.574 11.31 1.305.335.218.44.654.22.99zm1.464-3.256c-.273.444-.853.584-1.297.31-3.12-1.92-7.877-2.476-11.564-1.356-.497.15-1.022-.13-.173-.627-.15-.497.13-1.022.627-1.173 4.214-1.28 9.458-.654 13.097 1.58.444.273.584.853.31 1.297zm.126-3.398c-3.743-2.223-9.924-2.427-13.486-1.346-.574.175-1.177-.16-1.35-.735-.175-.574.16-1.177.735-1.35 4.1-1.244 10.933-1.002 15.244 1.556.516.307.687.97.38 1.487-.307.516-.97.687-1.487.38z"/></svg>
     </a>
-
     <a href="https://on.soundcloud.com/D3yKKeseYUCexZ8xdG" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M11.56 16.75c0 .34-.03.65-.08.94h8.31c.14 0 .27-.01.41-.04.83-.14 1.47-.85 1.47-1.72 0-.31-.08-.6-.23-.85-.31-.53-.88-.88-1.54-.88-.08 0-.16.01-.24.02-.01-.76-.36-1.42-.92-1.85-.41-.31-.92-.5-1.49-.5-.12 0-.23.01-.35.03-.39-1.29-1.59-2.23-3.01-2.23-.27 0-.54.04-.78.11V16.75h-1.55zm-1.83 1.13c.03-.33.05-.7.05-1.13V8.81c-.28.16-.54.36-.77.6v8.47h.72zm-1.84-.11V10.7c-.24.3-.44.63-.59.98v5.19h.59zm-1.84-.45v-3.78c-.23.36-.4.78-.51 1.22v1.94c.11.23.28.44.51.62zm-1.84-.96v-.9c-.23.16-.44.37-.61.61v.39c.17-.03.41-.06.61-.1z"/></svg>
     </a>
-
-    <a href="#" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.637-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.82-.779.883-1.453 2.311-1.273 3.674 1.338.104 2.715-.65 3.56-1.664z"/></svg>
-    </a>
-
     <a href="https://www.instagram.com/yungdyanuwu?igsh=MTA4ZnlvNGl2ZWc2Yw==" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204 0-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
     </a>
-
     <a href="https://www.tiktok.com/@yung_dyan?_r=1&_t=ZS-93x3MDNHqWw" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.6-4.12-1.31a6.417 6.417 0 0 1-1.87-1.55c-.05 2.15-.02 4.31-.03 6.46 0 1.63-.12 3.26-.75 4.74-.6 1.41-1.56 2.63-2.89 3.41a9.04 9.04 0 0 1-4.57 1.23c-1.51-.02-3.06-.35-4.44-1.07-1.4-.72-2.58-1.84-3.33-3.23a9.052 9.052 0 0 1-1.12-4.58c.02-1.5.35-3.07 1.07-4.45.72-1.39 1.84-2.58 3.23-3.33a9.03 9.03 0 0 1 4.58-1.12c.53-.02 1.07.02 1.6.1V8.04a5.05 5.05 0 0 0-3.32 1.61 5.06 5.06 0 0 0-1.28 3.32c.02.83.21 1.66.57 2.41.36.75.92 1.39 1.61 1.83.69.44 1.5.67 2.32.68.82-.01 1.63-.25 2.32-.69.75-.48 1.35-1.19 1.7-2.03.35-.83.47-1.74.46-2.65-.01-4.22-.01-8.44-.01-12.66z"/></svg>
     </a>
-
-    <a href="#" target="_blank">
-      <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-    </a>
-
-    <a href="#" target="_blank">
+    <a href="https://www.youtube.com/@yungdyanuwu" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
     </a>
   </footer>
