@@ -6,6 +6,8 @@
   <title>Gray Collective Records</title>
   
   <link rel="icon" type="image/png" href="logo 1 blanco gcr sin fondo.png">
+  <link rel="apple-touch-icon" href="logo 1 blanco gcr sin fondo.png">
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
@@ -41,14 +43,14 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* 3. BARRA SUPERIOR - LIMPIA */
+    /* 3. BARRA SUPERIOR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
       background: rgba(20, 20, 20, 0.85); 
       backdrop-filter: blur(15px);
       -webkit-backdrop-filter: blur(15px);
-      display: flex; /* Cambiado de grid a flex para centrar mejor el logo único */
+      display: flex;
       justify-content: center;
       align-items: center;
       padding: 0 60px;
@@ -94,6 +96,14 @@
       text-align: center;
       z-index: 3;
       animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+    }
+
+    /* LOGO CENTRAL EN EL HEADER */
+    .main-logo {
+      width: 140px; /* Ajusta el tamaño a tu gusto */
+      height: auto;
+      margin-bottom: 30px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.2));
     }
 
     h1 {
@@ -148,6 +158,7 @@
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; }
       h1 { font-size: 3.2rem; }
+      .main-logo { width: 100px; }
       .btn-artistas { padding: 15px 40px; font-size: 11px; }
     }
   </style>
@@ -167,6 +178,8 @@
 
   <header>
     <div class="hero-container">
+      <img src="logo 1 blanco gcr sin fondo.png" alt="Logo central" class="main-logo">
+      
       <h1>Gray Collective Records</h1>
       <a href="artistas.html" class="btn-artistas">Artistas</a>
     </div>
