@@ -26,6 +26,11 @@
       font-family: 'HorrorFont';
       src: url('HorrorFont-Regular.ttf') format('truetype');
     }
+    /* Fuente para Zoret ZT */
+    @font-face {
+      font-family: 'PastelTrunk';
+      src: url('PastelTrunk-Regular.otf') format('opentype');
+    }
 
     /* 1. RESET Y BASE */
     * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; -webkit-tap-highlight-color: transparent; }
@@ -137,7 +142,7 @@
       flex-direction: row; 
       justify-content: center;
       align-items: center;
-      gap: 100px; 
+      gap: 80px; 
       flex-wrap: wrap; 
     }
 
@@ -170,6 +175,12 @@
       letter-spacing: 2px;
     }
 
+    .zoret-font {
+      font-family: 'PastelTrunk', sans-serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      letter-spacing: 1px;
+    }
+
     .artist-link:hover {
       color: #d4d4d4; 
       -webkit-text-stroke: 1px #d4d4d4; 
@@ -178,14 +189,10 @@
       transform: scale(1.08);
     }
 
-    /* Ajustes específicos de hover para fuentes que no soportan mucho espaciado */
-    .natsu-font:hover {
-      letter-spacing: 4px;
-    }
-
-    .dyan-font:hover {
-      letter-spacing: 8px;
-    }
+    /* Ajustes específicos de hover */
+    .natsu-font:hover { letter-spacing: 4px; }
+    .dyan-font:hover { letter-spacing: 8px; }
+    .zoret-font:hover { letter-spacing: 6px; }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; height: 65px; }
@@ -221,6 +228,7 @@
       <a href="ripzue.html" class="artist-link ripzue-font">Ripzue</a>
       <a href="lilnatsu.html" class="artist-link natsu-font">Lil Natsu</a>
       <a href="yungdyan.html" class="artist-link dyan-font">Yung Dyan</a>
+      <a href="zoretzt.html" class="artist-link zoret-font">Zoret Zt</a>
     </div>
   </div>
 
