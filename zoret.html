@@ -9,12 +9,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* 0. FUENTES */
     @font-face {
       font-family: 'PastelTrunk';
       src: url('PastelTrunk-Regular.otf') format('opentype');
       font-weight: normal; font-style: normal;
     }
 
+    /* 1. RESET Y BASE */
     * { box-sizing: border-box; margin: 0; padding: 0; cursor: default; -webkit-tap-highlight-color: transparent; }
 
     body {
@@ -27,7 +29,7 @@
       position: fixed;
     }
 
-    /* ANIMACIONES */
+    /* 2. ANIMACIONES */
     @keyframes fadeInBlurTopbar {
       0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
       100% { opacity: 1; filter: blur(0); transform: translateY(0); }
@@ -41,7 +43,7 @@
       100% { transform: translateY(0); opacity: 1; }
     }
 
-    /* TOPBAR */
+    /* 3. TOPBAR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
@@ -57,21 +59,22 @@
       animation: fadeInBlurTopbar 1.2s ease-out forwards;
     }
     .nav-left { display: flex; align-items: center; }
-    .back-btn { text-decoration: none; color: #d4d4d4; font-size: 20px; transition: all 0.4s ease; cursor: pointer; }
+    .back-btn { text-decoration: none; color: #d4d4d4; font-size: 20px; transition: all 0.4s ease; cursor: pointer !important; }
     .back-btn:hover { color: #ffffff; transform: translateX(-5px); }
     
     .topbar img { 
       height: 45px; 
       width: auto; 
       filter: blur(0px); 
-      transition: filter 0.4s ease, transform 0.4s ease;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
-    .topbar a:hover img {
-      filter: blur(4px);
-      transform: scale(0.95);
+    .logo-link:hover img {
+      filter: blur(3px) grayscale(100%);
+      opacity: 0.7;
+      transform: scale(0.92);
     }
 
-    /* VIDEO FONDO */
+    /* 4. VIDEO FONDO */
     .video-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
     video { width: 100%; height: 100%; object-fit: cover; }
     .overlay {
@@ -80,7 +83,7 @@
       z-index: 2;
     }
 
-    /* CONTENIDO */
+    /* 5. CONTENIDO PRINCIPAL */
     main {
       position: relative;
       height: 100vh; 
@@ -104,7 +107,7 @@
       color: #a0a0a0; border-left: 1px solid #ffffff; padding-left: 20px; text-transform: uppercase;
     }
 
-    /* FOOTER REDES */
+    /* 6. REDES (FOOTER) */
     .social-footer {
       position: fixed;
       bottom: 0; left: 0; width: 100%; height: 85px;
@@ -115,10 +118,11 @@
       border-top: 1px solid rgba(212, 212, 212, 0.05);
       animation: slideUpFooter 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
     }
+    .social-footer a { text-decoration: none; display: flex; align-items: center; cursor: pointer !important; }
     .social-footer svg { width: 22px; height: 22px; fill: #555; transition: all 0.4s ease; }
     .social-footer a:hover svg { fill: #ffffff; transform: translateY(-3px); }
 
-    /* BOTON AUDIO */
+    /* 7. CONTROL AUDIO */
     .audio-toggle {
       position: fixed; bottom: 110px; right: 40px;
       width: 45px; height: 45px;
@@ -129,7 +133,7 @@
       display: flex; align-items: center; justify-content: center;
       z-index: 1001;
       transition: all 0.4s ease;
-      cursor: pointer;
+      cursor: pointer !important;
     }
     .audio-toggle svg { width: 16px; height: 16px; fill: #d4d4d4; }
 
@@ -143,8 +147,12 @@
 <body>
 
   <nav class="topbar">
-    <div class="nav-left"><a href="artistas.html" class="back-btn"> ← </a></div>
-    <a href="index.html" class="logo-link"><img src="logo 1 blanco gcr sin fondo.png" alt="GCR"></a>
+    <div class="nav-left">
+      <a href="artistas.html" class="back-btn"> ← </a>
+    </div>
+    <a href="index.html" class="logo-link">
+      <img src="logo 1 blanco gcr sin fondo.png" alt="GCR">
+    </a>
     <div></div> 
   </nav>
 
@@ -157,11 +165,14 @@
 
   <main>
     <h1>ZORET ZT</h1>
-    <div class="artist-info">ARTISTA MEXICANO INTEGRANTE DE <br>GRAY COLLECTIVE RECORDS.</div>
+    <div class="artist-info">
+      ARTISTA MEXICANO INTEGRANTE DE <br>
+      GRAY COLLECTIVE RECORDS.
+    </div>
   </main>
 
   <footer class="social-footer">
-    <a href="https://open.spotify.com/artist/3jIyN9arIGeSDuL5fJWgXR?si=wOmxAGXgQw6FyXBj5Sw9hw" target="_blank">
+    <a href="https://open.spotify.com/artist/57zK1CozO34UfT394p97nN" target="_blank">
       <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.496 17.306c-.215.352-.676.463-1.028.248-2.845-1.739-6.425-2.13-10.643-1.166-.402.092-.803-.16-.895-.562-.092-.403.16-.804.562-.896 4.618-1.055 8.567-.611 11.756 1.339.352.215.463.676.248 1.037zm1.467-3.257c-.271.441-.849.581-1.289.31-3.255-2.001-8.22-2.583-12.069-1.415-.498.151-1.022-.132-1.173-.63-.151-.498.132-1.022.63-1.173 4.4-1.335 9.877-.678 13.602 1.618.44.27.58.848.309 1.29zm.126-3.411c-3.905-2.319-10.334-2.533-14.077-1.397-.6.182-1.23-.162-1.412-.762-.182-.6.162-1.23.762-1.412 4.293-1.304 11.393-1.056 15.894 1.616.54.32.715 1.018.395 1.558-.32.54-1.018.715-1.562.4z"/></svg>
     </a>
 
@@ -190,10 +201,12 @@
     const video = document.getElementById('artistVideo');
     const audioBtn = document.getElementById('audioBtn');
     
+    // Iniciar video al primer clic
     document.addEventListener('click', () => { 
       if (video.paused) video.play(); 
     }, { once: true });
 
+    // Lógica de Mute/Unmute con fade
     audioBtn.addEventListener('click', (e) => {
       e.preventDefault();
       if (video.muted) {
