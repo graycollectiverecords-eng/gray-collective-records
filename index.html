@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="logo 1 blanco gcr sin fondo.png">
   <link rel="apple-touch-icon" href="logo 1 blanco gcr sin fondo.png">
   <link rel="shortcut icon" href="logo 1 blanco gcr sin fondo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     /* 0. FUENTES */
@@ -25,8 +25,9 @@
       font-family: 'Inter', sans-serif;
       background: #000;
       color: #ffffff;
-      height: 100vh; width: 100vw;
-      overflow: hidden; position: fixed;
+      /* CAMBIO NECESARIO: Permitimos el scroll para ver los lanzamientos */
+      min-height: 100vh; width: 100vw;
+      overflow-x: hidden; 
     }
 
     /* 2. ANIMACIONES */
@@ -80,16 +81,15 @@
     .menu-btn.active .line { opacity: 0; transform: scaleX(0); }
     .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
 
-    /* 3.2 SIDE MENU - AJUSTE DE DIFUMINADO SOLICITADO */
     .menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0); visibility: hidden; z-index: 1500;
       transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .menu-overlay.active { 
-      background: rgba(0, 0, 0, 0.85); /* Tapa más el fondo */
+      background: rgba(0, 0, 0, 0.85); 
       visibility: visible; 
-      backdrop-filter: blur(8px); /* Difuminado medio, ni mucho ni poco */
+      backdrop-filter: blur(8px); 
       -webkit-backdrop-filter: blur(8px);
     }
 
@@ -108,7 +108,10 @@
     }
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
-    /* 4. HEADER Y NOMBRE - COLOR #d4d4d4 APLICADO */
+    /* ESTILO PARA PÁGINA ACTUAL EN MENÚ */
+    .menu-nav a.current { color: #d4d4d4; pointer-events: none; border-left: 1px solid #d4d4d4; padding-left: 10px; }
+
+    /* 4. HEADER Y NOMBRE */
     header { 
       position: relative; height: 100vh; display: flex; flex-direction: column; 
       align-items: center; justify-content: center; text-align: center; z-index: 3; 
@@ -122,16 +125,7 @@
       letter-spacing: 1px;
       margin-bottom: 50px; 
       -webkit-font-smoothing: antialiased;
-      
-      /* Animación discreta con tu color #d4d4d4 */
-      background: linear-gradient(
-        to right, 
-        #d4d4d4 0%, 
-        #d4d4d4 40%, 
-        #ffffff 50%, 
-        #d4d4d4 60%, 
-        #d4d4d4 100%
-      );
+      background: linear-gradient(to right, #d4d4d4 0%, #d4d4d4 40%, #ffffff 50%, #d4d4d4 60%, #d4d4d4 100%);
       background-size: 400% 100%;
       color: transparent;
       -webkit-background-clip: text;
@@ -140,12 +134,11 @@
       filter: drop-shadow(0 0 1px rgba(212, 212, 212, 0.2));
     }
 
-    /* BOTÓN ARTISTAS - COLOR #d4d4d4 APLICADO */
     .btn-artistas {
       position: relative;
       display: inline-block;
       padding: 18px 60px;
-      color: #d4d4d4; /* Color solicitado */
+      color: #d4d4d4;
       text-decoration: none;
       font-weight: 800;
       font-size: 13px;
@@ -171,7 +164,91 @@
     .btn-artistas:hover span { width: 350px; height: 350px; }
     .btn-artistas:hover { color: #000; border-color: #fff; }
 
-    .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
+    .hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
+
+    /* 5. SECCIÓN LANZAMIENTOS (NUEVA) */
+    .releases-section {
+      position: relative; z-index: 10;
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .releases-title {
+      font-family: 'OldLondon', serif;
+      font-size: 2.5rem;
+      color: #d4d4d4;
+      margin-bottom: 60px;
+      text-align: center;
+      letter-spacing: 2px;
+    }
+
+    .releases-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .release-item {
+      text-decoration: none;
+      transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .release-item:hover { transform: translateY(-10px); }
+
+    .release-cover {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(212, 212, 212, 0.1);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .release-info { text-align: left; }
+    .release-info h3 { font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; }
+    .release-info p { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #666; }
+
+    /* 6. FOOTER (NUEVO) */
+    footer {
+      position: relative; z-index: 10;
+      background: #050505;
+      padding: 80px 60px 40px;
+      border-top: 1px solid rgba(212, 212, 212, 0.05);
+      margin-top: 100px;
+    }
+
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr;
+      gap: 40px;
+    }
+
+    .footer-col h4 { font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: #d4d4d4; margin-bottom: 25px; }
+    .footer-col a { display: block; font-size: 0.75rem; color: #555; text-decoration: none; margin-bottom: 12px; letter-spacing: 2px; transition: color 0.3s; }
+    .footer-col a:hover { color: #fff; }
+
+    .newsletter-box input {
+      background: none; border: none; border-bottom: 1px solid #333;
+      padding: 10px 0; color: #fff; width: 100%; outline: none; font-size: 0.8rem;
+    }
+
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      display: flex; justify-content: space-between;
+      font-size: 0.65rem; color: #333; letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .releases-grid { grid-template-columns: 1fr; }
+      .footer-container { grid-template-columns: 1fr; }
+      .topbar { padding: 0 20px; }
+    }
   </style>
 </head>
 
@@ -195,8 +272,10 @@
   <div class="menu-overlay" id="menuOverlay">
     <div class="side-menu">
       <nav class="menu-nav">
-        <a href="index.html">Inicio</a>
-        <a href="manifiesto.html">Manifiesto</a> <a href="#">Contacto</a>
+        <a href="index.html" class="current">Inicio</a>
+        <a href="artistas.html">El Colectivo</a>
+        <a href="manifiesto.html">Manifiesto</a>
+        <a href="#">Contacto</a>
       </nav>
     </div>
   </div>
@@ -210,6 +289,55 @@
       <span></span>
     </a>
   </header>
+
+  <section class="releases-section">
+    <h2 class="releases-title">Últimos Lanzamientos</h2>
+    
+    <div class="releases-grid">
+      <a href="https://open.spotify.com/track/6aQu3LApVG5Uom5JG5E1nf?si=s_GOXki-QjSKq8HR6SmuiQ" class="release-item">
+        <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
+        <div class="release-info">
+          <h3>Amor y Drogas</h3>
+          <p>Zoret Zt</p>
+        </div>
+      </a>
+
+      <a href="https://open.spotify.com/intl-es/album/7jiv8CmG4RsppyljZAU1nI?si=dRlWFBRSQhq0hq376_zG-g" class="release-item">
+        <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
+        <div class="release-info">
+          <h3>Procedimientos para un alma con rencor</h3>
+          <p>Lil Natsu</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-col">
+        <h4>Suscripción</h4>
+        <div class="newsletter-box">
+          <input type="email" placeholder="CORREO ELECTRÓNICO">
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Explorar</h4>
+        <a href="artistas.html">Artistas</a>
+        <a href="manifiesto.html">Manifiesto</a>
+        <a href="#">Privacidad</a>
+      </div>
+      <div class="footer-col">
+        <h4>Redes</h4>
+        <a href="#">Instagram</a>
+        <a href="#">YouTube</a>
+        <a href="#">Spotify</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GRAY COLLECTIVE RECORDS</span>
+      <span>ALL RIGHTS RESERVED</span>
+    </div>
+  </footer>
 
   <script>
     const btn = document.getElementById('liquidBtn');
@@ -238,6 +366,14 @@
       if (e.target === menuOverlay) {
         menuBtn.classList.remove('active');
         menuOverlay.classList.remove('active');
+      }
+    });
+
+    // Lógica para marcar página actual en el menú
+    const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      if(link.getAttribute('href') === currentPath) {
+        link.classList.add('current');
       }
     });
   </script>
