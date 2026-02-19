@@ -31,7 +31,7 @@
       position: fixed;
     }
 
-    /* 2. ANIMACIONES */
+    /* 2. ANIMACIONES CINEMÁTICAS (RESTURADAS) */
     @keyframes fadeInBlur {
       0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
       100% { opacity: 1; filter: blur(0); transform: translateY(0); }
@@ -55,13 +55,13 @@
       padding: 0 60px;
       z-index: 2000;
       border-bottom: 1px solid rgba(212, 212, 212, 0.05);
-      animation: fadeInBlur 1s ease-out forwards;
+      animation: fadeInBlur 1.2s ease-out forwards;
     }
 
     .logo-link { display: flex; justify-content: center; align-items: center; text-decoration: none; grid-column: 2; }
-    .topbar img { height: 42px; width: auto; }
+    .topbar img { height: 42px; width: auto; transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); }
 
-    /* 3.1 BOTÓN PENTAGRAMA */
+    /* 3.1 BOTÓN PENTAGRAMA REFINADO */
     .menu-btn {
       grid-column: 3;
       justify-self: end;
@@ -74,25 +74,38 @@
 
     .menu-btn svg {
       width: 26px; height: 26px;
-      fill: none; stroke: #d4d4d4; stroke-width: 1.2;
+      fill: none; stroke: #d4d4d4; stroke-width: 1.1;
       stroke-linecap: round; stroke-linejoin: round;
     }
 
-    .line { transition: transform 0.3s ease, opacity 0.3s; transform-origin: center; }
+    .line {
+      transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s;
+      transform-origin: center;
+    }
+
     .line-1 { d: path("M 4,10 L 24,10"); }
     .line-2 { d: path("M 10,18 L 24,18"); }
 
     .star-path { 
         stroke-dasharray: 150; 
         stroke-dashoffset: 150; 
-        transition: stroke-dashoffset 0.6s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.3s;
+        transition: stroke-dashoffset 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s;
         opacity: 0;
         d: path("M 14,26 L 23,2 L 2,17 L 26,17 L 5,2 Z");
     }
 
     .menu-btn:hover .line-2 { d: path("M 4,18 L 24,18"); }
-    .menu-btn.active .line { opacity: 0; transform: scale(0.5); }
-    .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
+
+    .menu-btn.active .line { 
+        opacity: 0; 
+        transform: scaleX(0); 
+    }
+    .menu-btn.active .star-path { 
+        opacity: 1;
+        stroke-dashoffset: 0; 
+        stroke: #ffffff;
+        filter: drop-shadow(0 0 2px rgba(255,255,255,0.3));
+    }
 
     /* 3.2 SIDE MENU */
     .menu-overlay {
@@ -100,37 +113,37 @@
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0);
       visibility: hidden; z-index: 1500;
-      transition: all 0.4s ease;
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     }
     .menu-overlay.active { 
       background: rgba(0, 0, 0, 0.7); 
       visibility: visible; 
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(15px);
     }
 
     .side-menu {
       position: absolute; top: 0; right: -100%;
       width: 320px; height: 100%;
-      background: #080808;
+      background: #050505;
       display: flex; flex-direction: column; justify-content: center;
       padding: 60px;
-      transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      transition: right 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      border-left: 1px solid rgba(255, 255, 255, 0.03);
     }
     .menu-overlay.active .side-menu { right: 0; }
 
     .menu-nav a {
-      font-size: 0.9rem; color: #666; text-decoration: none; text-transform: uppercase;
-      font-weight: 600; letter-spacing: 3px; transition: all 0.3s ease;
+      font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase;
+      font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease;
       margin-bottom: 25px; display: block;
     }
-    .menu-nav a:hover { color: #fff; letter-spacing: 5px; }
+    .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
-    /* 4. HEADER Y BOTÓN CON EFECTO LÍQUIDO */
+    /* 4. HEADER Y BOTÓN LÍQUIDO */
     header { 
       position: relative; height: 100vh; display: flex; flex-direction: column; 
       align-items: center; justify-content: center; text-align: center; z-index: 3; 
-      animation: revealContent 1.5s ease-out forwards; 
+      animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
     }
 
     h1 { 
@@ -141,12 +154,11 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* BOTÓN ARTISTAS: EFECTO AGUA / LLENADO */
     .btn-artistas {
       position: relative;
       display: inline-block;
       padding: 18px 60px;
-      color: #ffffff; /* Texto inicial en blanco */
+      color: #ffffff;
       text-decoration: none;
       font-weight: 800;
       font-size: 13px;
@@ -154,37 +166,38 @@
       text-transform: uppercase;
       border: 1px solid rgba(255,255,255,0.3);
       overflow: hidden;
-      transition: color 0.5s ease;
+      transition: color 0.5s ease, border-color 0.5s ease;
       z-index: 1;
     }
 
-    /* El "líquido" que sube */
+    /* Efecto Agua (Llenado) */
     .btn-artistas::before {
       content: "";
       position: absolute;
-      top: 100%; /* Empieza abajo (vacío) */
+      top: 100%;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #ffffff; /* Color del líquido */
+      background: #ffffff;
       transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1);
       z-index: -1;
     }
 
     .btn-artistas:hover {
-      color: #000000; /* El texto cambia a negro cuando el agua lo cubre */
+      color: #000000;
       border-color: #ffffff;
     }
 
     .btn-artistas:hover::before {
-      top: 0; /* Sube y llena el botón */
+      top: 0;
     }
 
     .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; }
-      .side-menu { width: 85%; }
+      .side-menu { width: 100%; text-align: center; }
+      .menu-nav { align-items: center; }
     }
   </style>
 </head>
@@ -238,6 +251,14 @@
         menuBtn.classList.remove('active');
         menuOverlay.classList.remove('active');
       }
+    });
+
+    // Cerrar menú al hacer clic en enlaces
+    document.querySelectorAll('.menu-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        menuOverlay.classList.remove('active');
+      });
     });
   </script>
 </body>
