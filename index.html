@@ -40,7 +40,6 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* Brillo Metálico ULTRA DISCRETO */
     @keyframes metalShineDiscreet {
       0% { background-position: 200% center; }
       100% { background-position: -200% center; }
@@ -61,7 +60,6 @@
     .logo-link { display: flex; justify-content: center; align-items: center; text-decoration: none; grid-column: 2; }
     .topbar img { height: 42px; width: auto; }
 
-    /* 3.1 BOTÓN PENTAGRAMA */
     .menu-btn {
       grid-column: 3; justify-self: end;
       background: none; border: none; width: 40px; height: 40px;
@@ -82,13 +80,18 @@
     .menu-btn.active .line { opacity: 0; transform: scaleX(0); }
     .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
 
-    /* 3.2 SIDE MENU */
+    /* 3.2 SIDE MENU - AJUSTE DE DIFUMINADO SOLICITADO */
     .menu-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0); visibility: hidden; z-index: 1500;
       transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     }
-    .menu-overlay.active { background: rgba(0, 0, 0, 0.7); visibility: visible; backdrop-filter: blur(15px); }
+    .menu-overlay.active { 
+      background: rgba(0, 0, 0, 0.85); /* Tapa más el fondo */
+      visibility: visible; 
+      backdrop-filter: blur(8px); /* Difuminado medio, ni mucho ni poco */
+      -webkit-backdrop-filter: blur(8px);
+    }
 
     .side-menu {
       position: absolute; top: 0; right: -100%; width: 320px; height: 100%;
@@ -97,10 +100,15 @@
       border-left: 1px solid rgba(255, 255, 255, 0.03);
     }
     .menu-overlay.active .side-menu { right: 0; }
-    .menu-nav a { font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; margin-bottom: 25px; display: block; }
+    
+    .menu-nav a { 
+      font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; 
+      font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; 
+      margin-bottom: 25px; display: block; 
+    }
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
-    /* 4. HEADER Y NOMBRE */
+    /* 4. HEADER Y NOMBRE - COLOR #d4d4d4 APLICADO */
     header { 
       position: relative; height: 100vh; display: flex; flex-direction: column; 
       align-items: center; justify-content: center; text-align: center; z-index: 3; 
@@ -115,35 +123,35 @@
       margin-bottom: 50px; 
       -webkit-font-smoothing: antialiased;
       
-      /* Gris Metálico Estático con Brillo Lento y Sutil */
+      /* Animación discreta con tu color #d4d4d4 */
       background: linear-gradient(
         to right, 
-        #666 0%, 
-        #666 40%, 
-        #999 50%, 
-        #666 60%, 
-        #666 100%
+        #d4d4d4 0%, 
+        #d4d4d4 40%, 
+        #ffffff 50%, 
+        #d4d4d4 60%, 
+        #d4d4d4 100%
       );
       background-size: 400% 100%;
       color: transparent;
       -webkit-background-clip: text;
       background-clip: text;
       animation: metalShineDiscreet 12s ease-in-out infinite;
-      filter: drop-shadow(0 0 1px rgba(255,255,255,0.05));
+      filter: drop-shadow(0 0 1px rgba(212, 212, 212, 0.2));
     }
 
-    /* BOTÓN ARTISTAS (Animación visible y direccional) */
+    /* BOTÓN ARTISTAS - COLOR #d4d4d4 APLICADO */
     .btn-artistas {
       position: relative;
       display: inline-block;
       padding: 18px 60px;
-      color: #ffffff;
+      color: #d4d4d4; /* Color solicitado */
       text-decoration: none;
       font-weight: 800;
       font-size: 13px;
       letter-spacing: 5px;
       text-transform: uppercase;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(212, 212, 212, 0.3);
       overflow: hidden;
       z-index: 1;
       transition: border-color 0.4s, color 0.4s;
@@ -188,9 +196,7 @@
     <div class="side-menu">
       <nav class="menu-nav">
         <a href="index.html">Inicio</a>
-        <a href="artistas.html">El Colectivo</a>
-        <a href="#">Lanzamientos</a>
-        <a href="#">Contacto</a>
+        <a href="manifiesto.html">Manifiesto</a> <a href="#">Contacto</a>
       </nav>
     </div>
   </div>
