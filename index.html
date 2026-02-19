@@ -15,8 +15,7 @@
     @font-face {
       font-family: 'OldLondon';
       src: url('OldLondon.ttf') format('truetype');
-      font-weight: normal; 
-      font-style: normal;
+      font-weight: normal; font-style: normal;
     }
 
     /* 1. RESET Y BASE */
@@ -62,7 +61,7 @@
     .logo-link { display: flex; justify-content: center; align-items: center; text-decoration: none; grid-column: 2; }
     .topbar img { height: 42px; width: auto; }
 
-    /* 3.1 BOTÓN PENTAGRAMA INVERTIDO */
+    /* 3.1 BOTÓN PENTAGRAMA */
     .menu-btn {
       grid-column: 3;
       justify-self: end;
@@ -75,18 +74,11 @@
 
     .menu-btn svg {
       width: 26px; height: 26px;
-      fill: none;
-      stroke: #d4d4d4;
-      stroke-width: 1.2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+      fill: none; stroke: #d4d4d4; stroke-width: 1.2;
+      stroke-linecap: round; stroke-linejoin: round;
     }
 
-    .line {
-      transition: transform 0.3s ease, opacity 0.3s;
-      transform-origin: center;
-    }
-
+    .line { transition: transform 0.3s ease, opacity 0.3s; transform-origin: center; }
     .line-1 { d: path("M 4,10 L 24,10"); }
     .line-2 { d: path("M 10,18 L 24,18"); }
 
@@ -99,16 +91,8 @@
     }
 
     .menu-btn:hover .line-2 { d: path("M 4,18 L 24,18"); }
-
-    .menu-btn.active .line { 
-        opacity: 0; 
-        transform: scale(0.5); 
-    }
-    .menu-btn.active .star-path { 
-        opacity: 1;
-        stroke-dashoffset: 0; 
-        stroke: #ffffff;
-    }
+    .menu-btn.active .line { opacity: 0; transform: scale(0.5); }
+    .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
 
     /* 3.2 SIDE MENU */
     .menu-overlay {
@@ -135,52 +119,68 @@
     }
     .menu-overlay.active .side-menu { right: 0; }
 
-    .menu-nav { display: flex; flex-direction: column; gap: 25px; }
     .menu-nav a {
       font-size: 0.9rem; color: #666; text-decoration: none; text-transform: uppercase;
       font-weight: 600; letter-spacing: 3px; transition: all 0.3s ease;
+      margin-bottom: 25px; display: block;
     }
     .menu-nav a:hover { color: #fff; letter-spacing: 5px; }
 
-    /* 4. HEADER - CORRECCIÓN DE LETRAS */
+    /* 4. HEADER Y BOTÓN CON EFECTO LÍQUIDO */
     header { 
-      position: relative; 
-      height: 100vh; 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
-      z-index: 3; 
+      position: relative; height: 100vh; display: flex; flex-direction: column; 
+      align-items: center; justify-content: center; text-align: center; z-index: 3; 
       animation: revealContent 1.5s ease-out forwards; 
     }
 
     h1 { 
       font-family: 'OldLondon', serif; 
-      font-size: clamp(2.5rem, 8vw, 6.5rem); /* Tamaño imponente original */
-      font-weight: normal; /* Asegura que NO se vean gruesas */
-      letter-spacing: 1px; 
-      color: #d4d4d4; 
-      margin-bottom: 50px; 
-      -webkit-font-smoothing: antialiased; /* Suavizado para mayor elegancia */
+      font-size: clamp(2.5rem, 8vw, 6.5rem); 
+      font-weight: normal;
+      letter-spacing: 1px; color: #d4d4d4; margin-bottom: 50px; 
+      -webkit-font-smoothing: antialiased;
     }
 
-    .btn-artistas { 
-      position: relative; 
-      display: inline-block; 
-      padding: 18px 60px; 
-      background-color: #d4d4d4; 
-      color: #000; 
-      text-decoration: none; 
-      font-weight: 800; 
-      font-size: 13px; 
-      letter-spacing: 5px; 
-      text-transform: uppercase; 
-      border: 1px solid #ffffff; 
-      transition: all 0.4s ease; 
+    /* BOTÓN ARTISTAS: EFECTO AGUA / LLENADO */
+    .btn-artistas {
+      position: relative;
+      display: inline-block;
+      padding: 18px 60px;
+      color: #ffffff; /* Texto inicial en blanco */
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.3);
+      overflow: hidden;
+      transition: color 0.5s ease;
+      z-index: 1;
     }
-    
-    .btn-artistas:hover { background-color: #fff; transform: translateY(-2px); }
+
+    /* El "líquido" que sube */
+    .btn-artistas::before {
+      content: "";
+      position: absolute;
+      top: 100%; /* Empieza abajo (vacío) */
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff; /* Color del líquido */
+      transition: top 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+
+    .btn-artistas:hover {
+      color: #000000; /* El texto cambia a negro cuando el agua lo cubre */
+      border-color: #ffffff;
+    }
+
+    .btn-artistas:hover::before {
+      top: 0; /* Sube y llena el botón */
+    }
+
+    .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
 
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; }
