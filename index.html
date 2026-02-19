@@ -40,10 +40,10 @@
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
 
-    /* Animación del brillo metálico en el texto */
-    @keyframes metalShine {
-      0% { background-position: -200%; }
-      100% { background-position: 200%; }
+    /* Brillo Metálico ULTRA DISCRETO */
+    @keyframes metalShineDiscreet {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
     }
 
     /* 3. BARRA SUPERIOR */
@@ -100,7 +100,7 @@
     .menu-nav a { font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; margin-bottom: 25px; display: block; }
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
-    /* 4. HEADER Y TEXTO METÁLICO */
+    /* 4. HEADER Y NOMBRE */
     header { 
       position: relative; height: 100vh; display: flex; flex-direction: column; 
       align-items: center; justify-content: center; text-align: center; z-index: 3; 
@@ -115,17 +115,24 @@
       margin-bottom: 50px; 
       -webkit-font-smoothing: antialiased;
       
-      /* Efecto Gris Metálico con Brillo */
-      background: linear-gradient(90deg, #555, #bbb, #555, #fff, #555);
-      background-size: 200% auto;
+      /* Gris Metálico Estático con Brillo Lento y Sutil */
+      background: linear-gradient(
+        to right, 
+        #666 0%, 
+        #666 40%, 
+        #999 50%, 
+        #666 60%, 
+        #666 100%
+      );
+      background-size: 400% 100%;
       color: transparent;
       -webkit-background-clip: text;
       background-clip: text;
-      animation: metalShine 6s linear infinite;
-      filter: drop-shadow(0 0 1px rgba(255,255,255,0.1));
+      animation: metalShineDiscreet 12s ease-in-out infinite;
+      filter: drop-shadow(0 0 1px rgba(255,255,255,0.05));
     }
 
-    /* BOTÓN DIRECCIONAL */
+    /* BOTÓN ARTISTAS (Animación visible y direccional) */
     .btn-artistas {
       position: relative;
       display: inline-block;
@@ -202,8 +209,7 @@
     const btn = document.getElementById('liquidBtn');
     const span = btn.querySelector('span');
 
-    // Detección de entrada del mouse para el efecto líquido
-    btn.onmouseenter = function(e) {
+    function updatePos(e) {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -211,14 +217,8 @@
       span.style.top = y + 'px';
     }
 
-    // Detección de salida del mouse
-    btn.onmouseleave = function(e) {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      span.style.left = x + 'px';
-      span.style.top = y + 'px';
-    }
+    btn.onmouseenter = updatePos;
+    btn.onmouseleave = updatePos;
 
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
