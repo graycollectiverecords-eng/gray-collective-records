@@ -64,7 +64,7 @@
       grid-template-columns: 1fr auto 1fr;
       align-items: center;
       padding: 0 60px;
-      z-index: 1000;
+      z-index: 2000; /* Aumentado para el menú */
       border-bottom: 1px solid rgba(212, 212, 212, 0.1);
       animation: fadeInBlurTopbar 1.2s ease-out forwards;
     }
@@ -93,6 +93,50 @@
       opacity: 0.7;
       transform: scale(0.92);
     }
+
+    /* 3.1 ESTILOS DEL BOTÓN DEL MENÚ (COPIADOS) */
+    .menu-btn {
+      grid-column: 3; justify-self: end;
+      background: none; border: none; width: 40px; height: 40px;
+      z-index: 2100; display: flex; align-items: center; justify-content: center;
+    }
+    .menu-btn svg { width: 26px; height: 26px; fill: none; stroke: #d4d4d4; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
+    .line { transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s; transform-origin: center; }
+    .line-1 { d: path("M 4,10 L 24,10"); }
+    .line-2 { d: path("M 10,18 L 24,18"); }
+    .star-path { 
+      stroke-dasharray: 150; stroke-dashoffset: 150; 
+      transition: stroke-dashoffset 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s;
+      opacity: 0; d: path("M 14,26 L 23,2 L 2,17 L 26,17 L 5,2 Z");
+    }
+    .menu-btn.active .line { opacity: 0; transform: scaleX(0); }
+    .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
+
+    /* 3.2 OVERLAY Y SIDE MENU (COPIADOS CON TU AJUSTE DE DIFUMINADO) */
+    .menu-overlay {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0); visibility: hidden; z-index: 1500;
+      transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .menu-overlay.active { 
+      background: rgba(0, 0, 0, 0.85); 
+      visibility: visible; 
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .side-menu {
+      position: absolute; top: 0; right: -100%; width: 320px; height: 100%;
+      background: #050505; display: flex; flex-direction: column; justify-content: center;
+      padding: 60px; transition: right 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+      border-left: 1px solid rgba(255, 255, 255, 0.03);
+    }
+    .menu-overlay.active .side-menu { right: 0; }
+    .menu-nav a { 
+      font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; 
+      font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; 
+      margin-bottom: 25px; display: block; 
+    }
+    .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
     /* 4. CONTENIDO PRINCIPAL */
     .main-wrapper {
@@ -127,13 +171,13 @@
       text-transform: uppercase;
     }
 
-    /* 5. LISTA DE ARTISTAS (ESTRUCTURA GRID 2x2) */
+    /* 5. LISTA DE ARTISTAS */
     .roster-container {
       width: 90%;
       max-width: 1000px;
       display: grid;
-      grid-template-columns: repeat(2, 1fr); /* Dos columnas iguales */
-      gap: 60px 100px; /* Espacio entre filas y columnas */
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px 100px;
       justify-items: center;
       align-items: center;
     }
@@ -151,13 +195,11 @@
       white-space: nowrap;
     }
 
-    /* TIPOGRAFÍAS */
     .ripzue-font { font-family: 'TribTwo', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); }
     .natsu-font { font-family: 'HelpMe', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: -2px; }
     .dyan-font { font-family: 'HorrorFont', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 2px; }
     .zoret-font { font-family: 'PastelTrunk', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); letter-spacing: 1px; }
 
-    /* HOVERS ORIGINALES */
     .artist-link:hover {
       color: #d4d4d4; 
       -webkit-text-stroke: 1px #d4d4d4; 
@@ -174,10 +216,9 @@
     @media (max-width: 768px) {
       .topbar { padding: 0 25px; height: 65px; }
       .roster-container { 
-        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        grid-template-columns: 1fr;
         gap: 50px; 
       }
-      .artist-link { font-size: 3rem; }
     }
   </style>
 </head>
@@ -192,8 +233,24 @@
       <img src="logo 1 blanco gcr sin fondo.png" alt="Gray Collective Records">
     </a>
 
-    <div></div> 
+    <button class="menu-btn" id="menuBtn">
+      <svg viewBox="0 0 28 28">
+        <path class="line line-1" d="M 4,10 L 24,10" />
+        <path class="line line-2" d="M 10,18 L 24,18" />
+        <path class="star-path" d="M 14,26 L 23,2 L 2,17 L 26,17 L 5,2 Z" />
+      </svg>
+    </button>
   </nav>
+
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="side-menu">
+      <nav class="menu-nav">
+        <a href="index.html">Inicio</a>
+        <a href="manifiesto.html">Manifiesto</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+  </div>
 
   <div class="main-wrapper">
     <section class="manifesto-section">
@@ -211,5 +268,22 @@
     </div>
   </div>
 
+  <script>
+    // LÓGICA DEL MENÚ
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+
+    menuBtn.addEventListener('click', () => {
+      menuBtn.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+    });
+
+    menuOverlay.addEventListener('click', (e) => {
+      if (e.target === menuOverlay) {
+        menuBtn.classList.remove('active');
+        menuOverlay.classList.remove('active');
+      }
+    });
+  </script>
 </body>
 </html>
