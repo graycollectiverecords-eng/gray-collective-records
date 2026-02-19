@@ -117,6 +117,21 @@
     }
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
 
+    /* Estilo para el link de Merch bloqueado */
+    .menu-nav a.locked {
+      color: #222;
+      filter: blur(1px);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .menu-nav a.locked svg {
+      width: 12px;
+      height: 12px;
+      fill: #222;
+    }
+
     .menu-nav a.current { color: #d4d4d4; pointer-events: none; border-left: 1px solid #d4d4d4; padding-left: 10px; }
 
     /* 4. HEADER Y NOMBRE */
@@ -329,6 +344,10 @@
         <a href="index.html">Inicio</a>
         <a href="artistas.html">El Colectivo</a>
         <a href="manifiesto.html">Manifiesto</a>
+        <a href="#" class="locked">
+          Merch 
+          <svg viewBox="0 0 24 24"><path d="M18,8H17V6A5,5,0,0,0,7,6V8H6a2,2,0,0,0-2,2V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V10A2,2,0,0,0,18,8ZM9,6a3,3,0,0,1,6,0V8H9ZM18,20H6V10H18Z"/></svg>
+        </a>
         <a href="#">Contacto</a>
       </nav>
     </div>
