@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="logo 1 blanco gcr sin fondo.png">
   <link rel="apple-touch-icon" href="logo 1 blanco gcr sin fondo.png">
   <link rel="shortcut icon" href="logo 1 blanco gcr sin fondo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     /* 0. FUENTES */
@@ -29,26 +29,29 @@
       overflow-x: hidden; 
     }
 
-    /* 2. ANIMACIONES (MANTENIDAS) */
+    /* 2. ANIMACIONES */
     @keyframes fadeInBlur {
       0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
       100% { opacity: 1; filter: blur(0); transform: translateY(0); }
     }
+
     @keyframes revealContent {
       0% { opacity: 0; transform: translateY(30px); filter: blur(10px); }
       100% { opacity: 1; transform: translateY(0); filter: blur(0); }
     }
+
     @keyframes metalShineDiscreet {
       0% { background-position: 200% center; }
       100% { background-position: -200% center; }
     }
+
     @keyframes scrollBounce {
       0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
       40% { transform: translateY(-10px) translateX(-50%); }
       60% { transform: translateY(-5px) translateX(-50%); }
     }
 
-    /* 3. BARRA SUPERIOR (SIN CAMBIOS) */
+    /* 3. BARRA SUPERIOR */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
@@ -59,8 +62,12 @@
       border-bottom: 1px solid rgba(212, 212, 212, 0.05);
       animation: fadeInBlur 1.2s ease-out forwards;
     }
+
     .logo-link { display: flex; justify-content: center; align-items: center; text-decoration: none; grid-column: 2; }
-    .topbar img { height: 42px; width: auto; transition: filter 0.4s ease; }
+    .topbar img { 
+      height: 42px; width: auto; 
+      transition: filter 0.4s ease;
+    }
     .logo-link:hover img { filter: blur(4px); }
 
     .menu-btn {
@@ -68,15 +75,18 @@
       background: none; border: none; width: 40px; height: 40px;
       z-index: 2100; display: flex; align-items: center; justify-content: center;
     }
-    .menu-btn svg { width: 26px; height: 26px; fill: none; stroke: #d4d4d4; stroke-width: 1.1; }
+
+    .menu-btn svg { width: 26px; height: 26px; fill: none; stroke: #d4d4d4; stroke-width: 1.1; stroke-linecap: round; stroke-linejoin: round; }
     .line { transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.3s; transform-origin: center; }
     .line-1 { d: path("M 4,10 L 24,10"); }
     .line-2 { d: path("M 10,18 L 24,18"); }
+
     .star-path { 
       stroke-dasharray: 150; stroke-dashoffset: 150; 
       transition: stroke-dashoffset 0.8s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s;
       opacity: 0; d: path("M 14,26 L 23,2 L 2,17 L 26,17 L 5,2 Z");
     }
+
     .menu-btn.active .line { opacity: 0; transform: scaleX(0); }
     .menu-btn.active .star-path { opacity: 1; stroke-dashoffset: 0; stroke: #ffffff; }
 
@@ -85,7 +95,12 @@
       background: rgba(0, 0, 0, 0); visibility: hidden; z-index: 1500;
       transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
     }
-    .menu-overlay.active { background: rgba(0, 0, 0, 0.85); visibility: visible; backdrop-filter: blur(8px); }
+    .menu-overlay.active { 
+      background: rgba(0, 0, 0, 0.85); 
+      visibility: visible; 
+      backdrop-filter: blur(8px); 
+      -webkit-backdrop-filter: blur(8px);
+    }
 
     .side-menu {
       position: absolute; top: 0; right: -100%; width: 320px; height: 100%;
@@ -94,132 +109,144 @@
       border-left: 1px solid rgba(255, 255, 255, 0.03);
     }
     .menu-overlay.active .side-menu { right: 0; }
-    .menu-nav a { font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; margin-bottom: 25px; display: block; }
+    
+    .menu-nav a { 
+      font-size: 0.9rem; color: #555; text-decoration: none; text-transform: uppercase; 
+      font-weight: 600; letter-spacing: 4px; transition: all 0.4s ease; 
+      margin-bottom: 25px; display: block; 
+    }
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
+
+    /* Estilo Merch bloqueado */
+    .menu-nav a.merch-locked {
+      color: #222;
+      filter: blur(1.5px);
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .menu-nav a.merch-locked svg { width: 14px; fill: #222; }
+
     .menu-nav a.current { color: #d4d4d4; pointer-events: none; border-left: 1px solid #d4d4d4; padding-left: 10px; }
 
-    /* 4. HEADER (MANTENIDO) */
-    header { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 3; animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-    h1 { font-family: 'OldLondon', serif; font-size: clamp(2.5rem, 8vw, 6.5rem); font-weight: normal; letter-spacing: 1px; margin-bottom: 50px; background: linear-gradient(to right, #d4d4d4 0%, #d4d4d4 40%, #ffffff 50%, #d4d4d4 60%, #d4d4d4 100%); background-size: 400% 100%; color: transparent; -webkit-background-clip: text; background-clip: text; animation: metalShineDiscreet 12s ease-in-out infinite; }
-    
-    .btn-artistas { position: relative; display: inline-block; padding: 18px 60px; color: #d4d4d4; text-decoration: none; font-weight: 800; font-size: 13px; letter-spacing: 5px; text-transform: uppercase; border: 1px solid rgba(212, 212, 212, 0.3); overflow: hidden; z-index: 1; transition: border-color 0.4s, color 0.4s; }
-    .btn-artistas span { position: absolute; display: block; width: 0; height: 0; border-radius: 50%; background: #ffffff; transform: translate(-50%, -50%); transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1), height 0.6s cubic-bezier(0.19, 1, 0.22, 1); z-index: -1; }
+    /* 4. HEADER Y NOMBRE */
+    header { 
+      position: relative; height: 100vh; display: flex; flex-direction: column; 
+      align-items: center; justify-content: center; text-align: center; z-index: 3; 
+      animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; 
+    }
+
+    h1 { 
+      font-family: 'OldLondon', serif; 
+      font-size: clamp(2.5rem, 8vw, 6.5rem); 
+      font-weight: normal; 
+      letter-spacing: 1px;
+      margin-bottom: 50px; 
+      -webkit-font-smoothing: antialiased;
+      background: linear-gradient(to right, #d4d4d4 0%, #d4d4d4 40%, #ffffff 50%, #d4d4d4 60%, #d4d4d4 100%);
+      background-size: 400% 100%;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: metalShineDiscreet 12s ease-in-out infinite;
+      filter: drop-shadow(0 0 1px rgba(212, 212, 212, 0.2));
+    }
+
+    .btn-artistas {
+      position: relative;
+      display: inline-block;
+      padding: 18px 60px;
+      color: #d4d4d4;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 212, 212, 0.3);
+      overflow: hidden;
+      z-index: 1;
+      transition: border-color 0.4s, color 0.4s;
+    }
+
+    .btn-artistas span {
+      position: absolute;
+      display: block;
+      width: 0; height: 0;
+      border-radius: 50%;
+      background: #ffffff;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1), height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+
     .btn-artistas:hover span { width: 350px; height: 350px; }
     .btn-artistas:hover { color: #000; border-color: #fff; }
 
-    .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; animation: scrollBounce 2s infinite; opacity: 0.6; }
-    .scroll-indicator span { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #d4d4d4; }
+    /* INDICADOR DE SCROLL */
+    .scroll-indicator {
+      position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
+      animation: scrollBounce 2s infinite; opacity: 0.6;
+    }
+    .scroll-indicator span { font-size: 10px; letter-spacing: 4px; text-transform: uppercase; color: #d4d4d4; font-weight: 400; }
     .scroll-indicator svg { width: 20px; height: 20px; fill: none; stroke: #d4d4d4; stroke-width: 1.5; }
 
     .hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
 
-    /* 5. SECCIÓN LANZAMIENTOS (REDISEÑO ULTRA LUJO) */
+    /* 5. SECCIÓN LANZAMIENTOS */
     .releases-section {
-      position: relative; z-index: 10;
-      padding: 180px 60px;
-      max-width: 1300px; 
-      margin: 0 auto;
-      background: #000;
+      position: relative; z-index: 10; padding: 100px 20px;
+      max-width: 900px; margin: 0 auto;
     }
-
     .releases-title {
-      font-family: 'OldLondon', serif;
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      color: #fff;
-      margin-bottom: 120px;
-      text-align: center;
-      font-weight: normal;
-      letter-spacing: 8px; /* Más aire */
-      text-transform: capitalize;
+      font-family: 'OldLondon', serif; font-size: 2.2rem; color: #d4d4d4;
+      margin-bottom: 60px; text-align: center; letter-spacing: 2px;
     }
-
-    .releases-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 100px; /* Mayor separación */
-    }
-
+    .releases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
     .release-item {
-      text-decoration: none;
-      display: block;
-      transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+      text-decoration: none; transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      max-width: 320px; margin: 0 auto; width: 100%;
     }
-
-    .cover-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      margin-bottom: 35px;
-      background: #111;
-      /* Marco sutil tipo cuadro de galería */
-      outline: 1px solid rgba(255, 255, 255, 0.05);
-      outline-offset: -1px;
-    }
-
+    .release-item:hover { transform: translateY(-10px); }
     .release-cover {
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      filter: grayscale(100%) contrast(1.1); /* Efecto inicial editorial */
-      transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), filter 1s ease;
+      width: 100%; aspect-ratio: 1 / 1; background-size: cover; background-position: center;
+      border: 1px solid rgba(212, 212, 212, 0.1); margin-bottom: 20px;
     }
+    .release-info h3 { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: #d4d4d4; margin-bottom: 5px; }
+    .release-info p { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: #666; }
 
-    .release-item:hover .release-cover {
-      transform: scale(1.08);
-      filter: grayscale(0%) contrast(1); /* Recupera el color */
+    /* 6. FOOTER Y FORMULARIO */
+    footer {
+      position: relative; z-index: 10; background: #050505;
+      padding: 80px 40px 40px; border-top: 1px solid rgba(212, 212, 212, 0.05); margin-top: 100px;
     }
-
-    .release-info {
-      text-align: center;
+    .footer-container {
+      max-width: 1000px; margin: 0 auto; display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr; gap: 40px;
     }
-
-    .release-info h3 {
-      font-size: 12px;
-      letter-spacing: 5px;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 15px;
-      font-weight: 400;
-    }
-
-    /* Línea divisoria minimalista que aparece al hacer hover */
-    .release-info::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 1px;
-        background: #fff;
-        margin: 15px auto 0;
-        transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-    }
-    .release-item:hover .release-info::after {
-        width: 30px;
-    }
-
-    .release-info p {
-      font-size: 10px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #666; /* Gris oscuro elegante */
-      font-weight: 300;
-    }
-
-    /* 6. FOOTER (MANTENIDO) */
-    footer { position: relative; z-index: 10; background: #050505; padding: 100px 40px 40px; border-top: 1px solid rgba(212, 212, 212, 0.05); margin-top: 100px; }
-    .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
     .footer-col h4 { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #d4d4d4; margin-bottom: 25px; }
     .footer-col a { display: block; font-size: 0.7rem; color: #555; text-decoration: none; margin-bottom: 12px; letter-spacing: 2px; transition: color 0.3s; }
     .footer-col a:hover { color: #fff; }
-    .newsletter-box input { background: none; border: none; border-bottom: 1px solid #333; padding: 10px 0; color: #fff; width: 100%; outline: none; font-size: 0.75rem; }
-    .footer-bottom { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; font-size: 0.6rem; color: #333; }
+
+    .newsletter-box input {
+      background: none; border: none; border-bottom: 1px solid #333;
+      padding: 10px 0; color: #fff; width: 100%; outline: none; font-size: 0.75rem;
+      transition: border-color 0.4s;
+    }
+    .newsletter-box input:focus { border-color: #fff; }
+    
+    .footer-bottom {
+      margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.02);
+      display: flex; justify-content: space-between; font-size: 0.6rem; color: #333; letter-spacing: 1px;
+    }
 
     @media (max-width: 768px) {
-      .releases-section { padding: 100px 30px; }
-      .releases-grid { grid-template-columns: 1fr; gap: 60px; }
+      .releases-grid { grid-template-columns: 1fr; gap: 50px; }
       .footer-container { grid-template-columns: 1fr; text-align: center; }
+      .newsletter-box input { text-align: center; }
       .topbar { padding: 0 20px; }
+      .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
     }
   </style>
 </head>
@@ -247,6 +274,10 @@
         <a href="index.html">Inicio</a>
         <a href="artistas.html">El Colectivo</a>
         <a href="manifiesto.html">Manifiesto</a>
+        <a href="#" class="merch-locked">
+          Merch 
+          <svg viewBox="0 0 24 24"><path d="M18,8H17V6A5,5,0,0,0,7,6V8H6a2,2,0,0,0-2,2V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V10A2,2,0,0,0,18,8ZM9,6a3,3,0,0,1,6,0V8H9ZM18,20H6V10H18Z"/></svg>
+        </a>
         <a href="#">Contacto</a>
       </nav>
     </div>
@@ -273,20 +304,16 @@
     <h2 class="releases-title">Últimos Lanzamientos</h2>
     
     <div class="releases-grid">
-      <a href="https://open.spotify.com/artist/tu_link_1" target="_blank" class="release-item">
-        <div class="cover-wrapper">
-          <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
-        </div>
+      <a href="https://open.spotify.com/track/6aQu3LApVG5Uom5JG5E1nf?si=s_GOXki-QjSKq8HR6SmuiQ" class="release-item">
+        <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
         <div class="release-info">
           <h3>Amor y Drogas</h3>
           <p>Zoret Zt</p>
         </div>
       </a>
 
-      <a href="https://open.spotify.com/artist/tu_link_2" target="_blank" class="release-item">
-        <div class="cover-wrapper">
-          <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
-        </div>
+      <a href="https://open.spotify.com/intl-es/album/7jiv8CmG4RsppyljZAU1nI?si=dRlWFBRSQhq0hq376_zG-g" class="release-item">
+        <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
         <div class="release-info">
           <h3>Procedimientos para un alma con rencor</h3>
           <p>Lil Natsu</p>
@@ -302,6 +329,7 @@
         <div class="newsletter-box">
           <form action="https://formspree.io/f/mgollarq" method="POST">
             <input type="email" name="email" placeholder="CORREO ELECTRÓNICO" required>
+            <button type="submit" style="display:none"></button>
           </form>
         </div>
       </div>
@@ -325,9 +353,10 @@
   </footer>
 
   <script>
-    // BOTÓN LÍQUIDO (MANTENIDO)
+    // LÓGICA BOTÓN LÍQUIDO
     const btn = document.getElementById('liquidBtn');
     const span = btn.querySelector('span');
+
     function updatePos(e) {
       const rect = btn.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -335,12 +364,14 @@
       span.style.left = x + 'px';
       span.style.top = y + 'px';
     }
+
     btn.onmouseenter = updatePos;
     btn.onmouseleave = updatePos;
 
-    // MENÚ (MANTENIDO)
+    // LÓGICA MENÚ
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
+
     menuBtn.addEventListener('click', () => {
       menuBtn.classList.toggle('active');
       menuOverlay.classList.toggle('active');
@@ -353,10 +384,12 @@
       }
     });
 
-    // RUTA ACTUAL (MANTENIDO)
+    // PÁGINA ACTUAL
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll('.menu-nav a').forEach(link => {
-      if(link.getAttribute('href') === currentPath) { link.classList.add('current'); }
+      if(link.getAttribute('href') === currentPath) {
+        link.classList.add('current');
+      }
     });
   </script>
 </body>
