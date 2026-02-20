@@ -8,7 +8,7 @@
   <link rel="icon" type="image/png" href="logo 1 blanco gcr sin fondo.png">
   <link rel="apple-touch-icon" href="logo 1 blanco gcr sin fondo.png">
   <link rel="shortcut icon" href="logo 1 blanco gcr sin fondo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
     /* 0. FUENTES */
@@ -29,7 +29,7 @@
       overflow-x: hidden; 
     }
 
-    /* 2. ANIMACIONES EXISTENTES */
+    /* 2. ANIMACIONES (MANTENIDAS) */
     @keyframes fadeInBlur {
       0% { opacity: 0; filter: blur(15px); transform: translateY(-10px); }
       100% { opacity: 1; filter: blur(0); transform: translateY(0); }
@@ -48,7 +48,7 @@
       60% { transform: translateY(-5px) translateX(-50%); }
     }
 
-    /* 3. BARRA SUPERIOR */
+    /* 3. BARRA SUPERIOR (SIN CAMBIOS) */
     .topbar {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 72px;
@@ -98,7 +98,7 @@
     .menu-nav a:hover { color: #ffffff; letter-spacing: 6px; }
     .menu-nav a.current { color: #d4d4d4; pointer-events: none; border-left: 1px solid #d4d4d4; padding-left: 10px; }
 
-    /* 4. HEADER */
+    /* 4. HEADER (MANTENIDO) */
     header { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 3; animation: revealContent 2s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
     h1 { font-family: 'OldLondon', serif; font-size: clamp(2.5rem, 8vw, 6.5rem); font-weight: normal; letter-spacing: 1px; margin-bottom: 50px; background: linear-gradient(to right, #d4d4d4 0%, #d4d4d4 40%, #ffffff 50%, #d4d4d4 60%, #d4d4d4 100%); background-size: 400% 100%; color: transparent; -webkit-background-clip: text; background-clip: text; animation: metalShineDiscreet 12s ease-in-out infinite; }
     
@@ -113,34 +113,36 @@
 
     .hero-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; background: #000; }
 
-    /* 5. SECCIÓN LANZAMIENTOS (REDISEÑO LUJO) */
+    /* 5. SECCIÓN LANZAMIENTOS (REDISEÑO ULTRA LUJO) */
     .releases-section {
       position: relative; z-index: 10;
-      padding: 160px 40px;
-      max-width: 1200px; 
+      padding: 180px 60px;
+      max-width: 1300px; 
       margin: 0 auto;
+      background: #000;
     }
 
     .releases-title {
       font-family: 'OldLondon', serif;
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3.5rem);
       color: #fff;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
       text-align: center;
       font-weight: normal;
-      letter-spacing: 4px;
+      letter-spacing: 8px; /* Más aire */
+      text-transform: capitalize;
     }
 
     .releases-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 80px;
+      gap: 100px; /* Mayor separación */
     }
 
     .release-item {
       text-decoration: none;
       display: block;
-      group: hover;
+      transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
     .cover-wrapper {
@@ -148,8 +150,11 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       overflow: hidden;
-      margin-bottom: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      margin-bottom: 35px;
+      background: #111;
+      /* Marco sutil tipo cuadro de galería */
+      outline: 1px solid rgba(255, 255, 255, 0.05);
+      outline-offset: -1px;
     }
 
     .release-cover {
@@ -157,42 +162,52 @@
       height: 100%;
       background-size: cover;
       background-position: center;
-      transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+      filter: grayscale(100%) contrast(1.1); /* Efecto inicial editorial */
+      transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1), filter 1s ease;
     }
 
     .release-item:hover .release-cover {
-      transform: scale(1.05);
-      filter: contrast(1.1) brightness(1.1);
+      transform: scale(1.08);
+      filter: grayscale(0%) contrast(1); /* Recupera el color */
     }
 
     .release-info {
       text-align: center;
-      transition: opacity 0.4s ease;
     }
 
     .release-info h3 {
-      font-size: 11px;
-      letter-spacing: 6px;
+      font-size: 12px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      color: #fff;
-      margin-bottom: 12px;
-      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 15px;
+      font-weight: 400;
+    }
+
+    /* Línea divisoria minimalista que aparece al hacer hover */
+    .release-info::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 1px;
+        background: #fff;
+        margin: 15px auto 0;
+        transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .release-item:hover .release-info::after {
+        width: 30px;
     }
 
     .release-info p {
-      font-size: 9px;
-      letter-spacing: 4px;
+      font-size: 10px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      color: #444; /* Color oscuro tipo marca de lujo */
-      transition: color 0.4s ease;
+      color: #666; /* Gris oscuro elegante */
+      font-weight: 300;
     }
 
-    .release-item:hover .release-info p {
-      color: #888;
-    }
-
-    /* 6. FOOTER */
-    footer { position: relative; z-index: 10; background: #050505; padding: 80px 40px 40px; border-top: 1px solid rgba(212, 212, 212, 0.05); margin-top: 100px; }
+    /* 6. FOOTER (MANTENIDO) */
+    footer { position: relative; z-index: 10; background: #050505; padding: 100px 40px 40px; border-top: 1px solid rgba(212, 212, 212, 0.05); margin-top: 100px; }
     .footer-container { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 40px; }
     .footer-col h4 { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: #d4d4d4; margin-bottom: 25px; }
     .footer-col a { display: block; font-size: 0.7rem; color: #555; text-decoration: none; margin-bottom: 12px; letter-spacing: 2px; transition: color 0.3s; }
@@ -201,8 +216,8 @@
     .footer-bottom { margin-top: 60px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.02); display: flex; justify-content: space-between; font-size: 0.6rem; color: #333; }
 
     @media (max-width: 768px) {
+      .releases-section { padding: 100px 30px; }
       .releases-grid { grid-template-columns: 1fr; gap: 60px; }
-      .releases-title { font-size: 2rem; margin-bottom: 60px; }
       .footer-container { grid-template-columns: 1fr; text-align: center; }
       .topbar { padding: 0 20px; }
     }
@@ -258,7 +273,7 @@
     <h2 class="releases-title">Últimos Lanzamientos</h2>
     
     <div class="releases-grid">
-      <a href="https://open.spotify.com/album/link1" target="_blank" class="release-item">
+      <a href="https://open.spotify.com/artist/tu_link_1" target="_blank" class="release-item">
         <div class="cover-wrapper">
           <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
         </div>
@@ -268,7 +283,7 @@
         </div>
       </a>
 
-      <a href="https://open.spotify.com/album/link2" target="_blank" class="release-item">
+      <a href="https://open.spotify.com/artist/tu_link_2" target="_blank" class="release-item">
         <div class="cover-wrapper">
           <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
         </div>
@@ -310,7 +325,7 @@
   </footer>
 
   <script>
-    // BOTÓN LÍQUIDO
+    // BOTÓN LÍQUIDO (MANTENIDO)
     const btn = document.getElementById('liquidBtn');
     const span = btn.querySelector('span');
     function updatePos(e) {
@@ -323,7 +338,7 @@
     btn.onmouseenter = updatePos;
     btn.onmouseleave = updatePos;
 
-    // MENÚ
+    // MENÚ (MANTENIDO)
     const menuBtn = document.getElementById('menuBtn');
     const menuOverlay = document.getElementById('menuOverlay');
     menuBtn.addEventListener('click', () => {
@@ -338,7 +353,7 @@
       }
     });
 
-    // RUTA ACTUAL
+    // RUTA ACTUAL (MANTENIDO)
     const currentPath = window.location.pathname.split("/").pop() || "index.html";
     document.querySelectorAll('.menu-nav a').forEach(link => {
       if(link.getAttribute('href') === currentPath) { link.classList.add('current'); }
