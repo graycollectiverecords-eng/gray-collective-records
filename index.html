@@ -347,10 +347,31 @@
     }
     .release-item:hover .release-artist { color: var(--neutral); }
 
-    /* ── COLUMNA DERECHA: noticias arriba, video abajo ── */
+    /* ── COLUMNA IZQUIERDA ── */
+    .col-left {
+      display: flex; flex-direction: column;
+      gap: 80px;
+    }
+    .noticias-block {}
+    .noticias-header { margin-bottom: 32px; }
+
+    /* ── COLUMNA DERECHA ── */
     .col-right {
       display: flex; flex-direction: column;
-      gap: 72px;
+      gap: 64px;
+      position: sticky;
+      top: 80px; /* se queda pegado mientras scrolleas */
+    }
+
+    /* — Spotify — */
+    .spotify-block {}
+    .spotify-iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+      border-radius: 0;
+      margin-top: 32px;
+      filter: grayscale(0.15);
     }
 
     /* — Noticias — */
@@ -503,8 +524,10 @@
       .main-grid {
         grid-template-columns: 1fr; padding: 0 24px; gap: 72px;
       }
+      .col-right { position: static; }
       .releases-stack { gap: 2px; }
       .release-item:nth-child(2) { margin-top: 0; }
+      .spotify-iframe { height: 380px; }
       .footer-container { grid-template-columns: 1fr; gap: 48px; }
       .footer-bottom { flex-direction: column; gap: 10px; }
       footer { padding: 60px 24px 32px; }
@@ -583,40 +606,40 @@
   <section class="main-section">
     <div class="main-grid">
 
-      <!-- ── COLUMNA IZQUIERDA: Portadas ── -->
-      <div class="col-releases reveal">
-        <div class="col-releases-header">
-          <p class="section-label">01 — Últimos Lanzamientos</p>
-        </div>
-        <div class="releases-stack">
-          <a href="#" class="release-item">
-            <div class="cover-frame">
-              <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
-              <span class="catalog-tag">GCR — 001</span>
-            </div>
-            <div class="release-info">
-              <span class="release-title">Amor y Drogas</span>
-              <span class="release-artist">Zoret Zt</span>
-            </div>
-          </a>
-          <a href="#" class="release-item">
-            <div class="cover-frame">
-              <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
-              <span class="catalog-tag">GCR — 002</span>
-            </div>
-            <div class="release-info">
-              <span class="release-title">Procedimientos para un alma con rencor</span>
-              <span class="release-artist">Lil Natsu</span>
-            </div>
-          </a>
-        </div>
-      </div>
+      <!-- ── COLUMNA IZQUIERDA: Portadas + Noticias ── -->
+      <div class="col-left">
 
-      <!-- ── COLUMNA DERECHA: Noticias + Video ── -->
-      <div class="col-right">
+        <!-- Portadas -->
+        <div class="col-releases reveal">
+          <div class="col-releases-header">
+            <p class="section-label">01 — Últimos Lanzamientos</p>
+          </div>
+          <div class="releases-stack">
+            <a href="#" class="release-item">
+              <div class="cover-frame">
+                <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
+                <span class="catalog-tag">GCR — 001</span>
+              </div>
+              <div class="release-info">
+                <span class="release-title">Amor y Drogas</span>
+                <span class="release-artist">Zoret Zt</span>
+              </div>
+            </a>
+            <a href="#" class="release-item">
+              <div class="cover-frame">
+                <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
+                <span class="catalog-tag">GCR — 002</span>
+              </div>
+              <div class="release-info">
+                <span class="release-title">Procedimientos para un alma con rencor</span>
+                <span class="release-artist">Lil Natsu</span>
+              </div>
+            </a>
+          </div>
+        </div>
 
-        <!-- Noticias -->
-        <div class="reveal reveal-delay-1">
+        <!-- Noticias — debajo de las portadas -->
+        <div class="noticias-block reveal">
           <div class="noticias-header">
             <p class="section-label">02 — Noticias</p>
           </div>
@@ -637,8 +660,33 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- ── COLUMNA DERECHA: Spotify + Video ── -->
+      <div class="col-right reveal reveal-delay-1">
+
+        <!-- Reproductor Spotify -->
+        <div class="spotify-block">
+          <p class="section-label">02 — Escuchar</p>
+          <!--
+            ════════════════════════════════════════════════
+            REPRODUCTOR SPOTIFY — para cambiar la playlist/álbum:
+            1. En Spotify, ve al álbum o playlist
+            2. Click en "..." → Compartir → Insertar → Copiar código
+            3. Reemplaza el iframe de abajo con ese código
+            4. Guarda y sube a GitHub — listo.
+            ════════════════════════════════════════════════
+          -->
+          <iframe
+            class="spotify-iframe"
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX0XUsuxWHRQd?utm_source=generator&theme=0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+          </iframe>
+        </div>
+
         <!-- Video de la Semana -->
-        <div class="video-wrap-block reveal reveal-delay-1">
+        <div class="video-wrap-block">
           <div class="video-header">
             <p class="section-label">03 — Video de la Semana</p>
           </div>
@@ -646,8 +694,7 @@
             <!--
               ════════════════════════════════════════════════
               REPRODUCTOR YOUTUBE — para cambiar el video:
-              1. Copia el ID del video de YouTube
-                 (lo que va después de ?v= en la URL)
+              1. Copia el ID del video de YouTube (después de ?v=)
               2. Reemplaza VIDEO_ID_AQUI por ese ID
               3. Guarda y sube a GitHub — listo.
               ════════════════════════════════════════════════
