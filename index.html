@@ -157,7 +157,11 @@
 
     /* ─── HERO ────────────────────────────────────────── */
     .hero {
-      position: relative; height: 100vh; overflow: hidden;
+      position: relative;
+      height: 100vh;
+      min-height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center;
@@ -252,34 +256,55 @@
       stroke: var(--bone); stroke-width: 1.5;
     }
 
-    /* ─── RELEASES ────────────────────────────────────── */
-    .releases-section {
+    /* ─── SECCIÓN PRINCIPAL (releases + noticias + video) ── */
+    .main-section {
       position: relative; z-index: 10;
-      padding: 140px 0 100px;
+      padding: 140px 0 120px;
     }
-    .section-tag {
-      font-family: var(--mono); font-size: 0.55rem;
-      letter-spacing: 5px; color: var(--shadow);
-      text-transform: uppercase; text-align: center;
-      margin-bottom: 100px;
+
+    /* Eyebrow label superior */
+    .section-label {
+      font-family: var(--mono); font-size: 0.5rem;
+      letter-spacing: 6px; color: var(--shadow);
+      text-transform: uppercase;
+      display: flex; align-items: center; gap: 20px;
+      margin-bottom: 6px;
     }
-    .releases-title {
-      font-family: 'OldLondon', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      color: var(--bone); text-align: center;
-      letter-spacing: 2px; line-height: 1;
-      margin-bottom: 100px;
-      opacity: 0.12; user-select: none; pointer-events: none;
+    .section-label::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(211,209,199,0.06);
     }
-    .releases-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      max-width: 860px; margin: 0 auto;
-      padding: 0 48px; gap: 0 2px; align-items: start;
+
+    /* Grid maestro: col izquierda (portadas) | col derecha (noticias + video) */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1300px; margin: 0 auto;
+      padding: 0 48px;
+      gap: 0 64px;
+      align-items: start;
+    }
+
+    /* ── COLUMNA IZQUIERDA: portadas ── */
+    .col-releases {
+      display: flex; flex-direction: column;
+    }
+    .col-releases-header {
+      margin-bottom: 48px;
+    }
+
+    /* Portadas escalonadas */
+    .releases-stack {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 2px;
+      align-items: start;
     }
     .release-item {
       text-decoration: none; display: block; position: relative;
     }
-    .release-item:nth-child(2) { margin-top: 120px; }
+    .release-item:nth-child(2) { margin-top: 80px; }
+
     .cover-frame {
       position: relative; width: 100%; aspect-ratio: 1;
       overflow: hidden; background: #111;
@@ -295,79 +320,54 @@
       filter: grayscale(1) brightness(0.78) contrast(1.15);
     }
     .catalog-tag {
-      position: absolute; top: 20px; left: 20px;
-      font-family: var(--mono); font-size: 0.55rem;
+      position: absolute; top: 16px; left: 16px;
+      font-family: var(--mono); font-size: 0.5rem;
       letter-spacing: 4px; color: rgba(211,209,199,0.18);
       text-transform: uppercase; z-index: 2;
       transition: color 0.4s;
     }
     .release-item:hover .catalog-tag { color: rgba(211,209,199,0.55); }
     .release-info {
-      padding: 20px 0 0;
+      padding: 16px 0 0;
       display: flex; align-items: baseline; justify-content: space-between;
     }
     .release-title {
       font-family: var(--serif); font-style: italic;
-      font-size: clamp(1rem, 2vw, 1.5rem);
+      font-size: clamp(0.85rem, 1.4vw, 1.2rem);
       color: var(--bone); font-weight: 400; line-height: 1.2;
       transition: color 0.3s;
     }
     .release-item:hover .release-title { color: #fff; }
     .release-artist {
-      font-family: var(--mono); font-size: 0.55rem;
+      font-family: var(--mono); font-size: 0.5rem;
       letter-spacing: 3px; color: var(--shadow);
       text-transform: uppercase; white-space: nowrap;
-      flex-shrink: 0; margin-left: 16px;
+      flex-shrink: 0; margin-left: 10px;
       transition: color 0.3s;
     }
     .release-item:hover .release-artist { color: var(--neutral); }
 
-    /* ─── SEPARADOR ───────────────────────────────────── */
-    .section-divider {
-      max-width: 1400px; margin: 0 auto;
-      padding: 0 48px;
-      border-top: 1px solid rgba(211,209,199,0.04);
-    }
-
-    /* ─── NOTICIAS + VIDEO OF THE WEEK ───────────────── */
-    .editorial-section {
-      position: relative; z-index: 10;
-      padding: 120px 0 100px;
-    }
-    .editorial-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      max-width: 1400px; margin: 0 auto;
-      padding: 0 48px; gap: 80px;
-      align-items: start;
+    /* ── COLUMNA DERECHA: noticias arriba, video abajo ── */
+    .col-right {
+      display: flex; flex-direction: column;
+      gap: 72px;
     }
 
     /* — Noticias — */
-    .noticias-col {}
-    .noticias-label {
-      font-family: var(--mono); font-size: 0.55rem;
-      letter-spacing: 5px; color: var(--shadow);
-      text-transform: uppercase; margin-bottom: 48px;
-      display: flex; align-items: center; gap: 20px;
-    }
-    .noticias-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(211,209,199,0.06);
-    }
+    .noticias-header { margin-bottom: 32px; }
     .noticia-item {
       border-bottom: 1px solid rgba(211,209,199,0.05);
-      padding: 28px 0;
+      padding: 24px 0;
       transition: border-color 0.3s;
     }
     .noticia-item:first-of-type { padding-top: 0; }
     .noticia-item:hover { border-color: rgba(211,209,199,0.12); }
     .noticia-fecha {
-      font-family: var(--mono); font-size: 0.5rem;
+      font-family: var(--mono); font-size: 0.48rem;
       letter-spacing: 4px; color: var(--shadow);
-      text-transform: uppercase; margin-bottom: 10px;
-      display: flex; align-items: center; gap: 12px;
+      text-transform: uppercase; margin-bottom: 8px;
+      display: flex; align-items: center; gap: 10px;
     }
-    /* Punto de acento azul — usado con cuentagotas */
     .noticia-fecha::before {
       content: ''; width: 4px; height: 4px;
       border-radius: 50%; background: var(--accent);
@@ -375,46 +375,32 @@
     }
     .noticia-titulo {
       font-family: var(--serif); font-style: italic;
-      font-size: clamp(1rem, 1.6vw, 1.3rem);
+      font-size: clamp(0.9rem, 1.4vw, 1.15rem);
       color: var(--bone); line-height: 1.35;
-      margin-bottom: 10px;
-      transition: color 0.3s;
+      margin-bottom: 8px; transition: color 0.3s;
     }
     .noticia-item:hover .noticia-titulo { color: #fff; }
     .noticia-desc {
-      font-family: var(--mono); font-size: 0.58rem;
-      letter-spacing: 1px; color: var(--shadow);
-      line-height: 1.7;
+      font-family: var(--mono); font-size: 0.55rem;
+      letter-spacing: 1px; color: var(--shadow); line-height: 1.7;
     }
 
     /* — Video of the Week — */
-    .video-col {}
-    .video-label {
-      font-family: var(--mono); font-size: 0.55rem;
-      letter-spacing: 5px; color: var(--shadow);
-      text-transform: uppercase; margin-bottom: 48px;
-      display: flex; align-items: center; gap: 20px;
-    }
-    .video-label::after {
-      content: ''; flex: 1; height: 1px;
-      background: rgba(211,209,199,0.06);
-    }
+    .video-wrap-block {}
+    .video-header { margin-bottom: 32px; }
     .video-embed-wrap {
       position: relative; width: 100%;
-      aspect-ratio: 16/9;
-      background: #111;
-      overflow: hidden;
+      aspect-ratio: 16/9; background: #111; overflow: hidden;
     }
     /* ── REPRODUCTOR YOUTUBE ──────────────────────────
-       Para cambiar el video: reemplaza el src del iframe.
-       Formato: https://www.youtube.com/embed/VIDEO_ID
-       Ejemplo: https://www.youtube.com/embed/dQw4w9WgXcQ
+       Para cambiar el video:
+       1. Copia el ID del video de YouTube (después de ?v=)
+       2. Reemplaza VIDEO_ID_AQUI por ese ID
+       3. Guarda y sube a GitHub — listo.
     ─────────────────────────────────────────────────── */
     .video-embed-wrap iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      border: none;
-      filter: grayscale(0.3) contrast(1.05);
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      border: none; filter: grayscale(0.3) contrast(1.05);
     }
     .video-placeholder {
       position: absolute; inset: 0;
@@ -423,32 +409,28 @@
       background: #0d0d0d;
     }
     .video-placeholder-icon {
-      width: 48px; height: 48px;
-      border: 1px solid rgba(211,209,199,0.1);
-      border-radius: 50%;
+      width: 44px; height: 44px;
+      border: 1px solid rgba(211,209,199,0.1); border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
     }
     .video-placeholder-icon svg {
-      width: 16px; height: 16px;
-      fill: var(--shadow); margin-left: 3px;
+      width: 14px; height: 14px; fill: var(--shadow); margin-left: 3px;
     }
     .video-placeholder span {
-      font-family: var(--mono); font-size: 0.5rem;
-      letter-spacing: 4px; color: var(--shadow);
-      text-transform: uppercase;
+      font-family: var(--mono); font-size: 0.48rem;
+      letter-spacing: 4px; color: var(--shadow); text-transform: uppercase;
     }
     .video-meta {
-      padding: 20px 0 0;
+      padding: 16px 0 0;
       display: flex; align-items: baseline; justify-content: space-between;
     }
     .video-meta-title {
       font-family: var(--serif); font-style: italic;
-      font-size: 1.05rem; color: var(--bone);
+      font-size: 1rem; color: var(--bone);
     }
     .video-meta-tag {
-      font-family: var(--mono); font-size: 0.5rem;
-      letter-spacing: 3px; color: var(--shadow);
-      text-transform: uppercase;
+      font-family: var(--mono); font-size: 0.48rem;
+      letter-spacing: 3px; color: var(--shadow); text-transform: uppercase;
     }
 
     /* ─── FOOTER ──────────────────────────────────────── */
@@ -518,17 +500,14 @@
       .cursor-dot { display: none; }
       html, body { cursor: auto; }
       a, button { cursor: auto; }
-      .releases-grid {
-        grid-template-columns: 1fr; padding: 0 24px; gap: 60px;
+      .main-grid {
+        grid-template-columns: 1fr; padding: 0 24px; gap: 72px;
       }
+      .releases-stack { gap: 2px; }
       .release-item:nth-child(2) { margin-top: 0; }
-      .editorial-grid {
-        grid-template-columns: 1fr; padding: 0 24px; gap: 60px;
-      }
       .footer-container { grid-template-columns: 1fr; gap: 48px; }
       .footer-bottom { flex-direction: column; gap: 10px; }
       footer { padding: 60px 24px 32px; }
-      .section-divider { padding: 0 24px; }
     }
   </style>
 </head>
@@ -600,94 +579,99 @@
     </div>
   </section>
 
-  <!-- ══ RELEASES ══════════════════════════════════════ -->
-  <section class="releases-section">
-    <p class="section-tag reveal">01 — Últimos Lanzamientos</p>
-    <h2 class="releases-title" aria-hidden="true">Releases</h2>
-    <div class="releases-grid">
-      <a href="#" class="release-item reveal">
-        <div class="cover-frame">
-          <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
-          <span class="catalog-tag">GCR — 001</span>
-        </div>
-        <div class="release-info">
-          <span class="release-title">Amor y Drogas</span>
-          <span class="release-artist">Zoret Zt</span>
-        </div>
-      </a>
-      <a href="#" class="release-item reveal reveal-delay-1">
-        <div class="cover-frame">
-          <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
-          <span class="catalog-tag">GCR — 002</span>
-        </div>
-        <div class="release-info">
-          <span class="release-title">Procedimientos para un alma con rencor</span>
-          <span class="release-artist">Lil Natsu</span>
-        </div>
-      </a>
-    </div>
-  </section>
+  <!-- ══ SECCIÓN PRINCIPAL ════════════════════════════ -->
+  <section class="main-section">
+    <div class="main-grid">
 
-  <!-- ══ NOTICIAS + VIDEO OF THE WEEK ══════════════════ -->
-  <div class="section-divider"></div>
-  <section class="editorial-section">
-    <div class="editorial-grid">
-
-      <!-- Noticias -->
-      <div class="noticias-col reveal">
-        <p class="noticias-label">02 — Noticias</p>
-
-        <div class="noticia-item">
-          <div class="noticia-fecha">Próximamente</div>
-          <div class="noticia-titulo">Nuevos lanzamientos en camino</div>
-          <p class="noticia-desc">El colectivo trabaja en nuevo material. Más detalles pronto.</p>
+      <!-- ── COLUMNA IZQUIERDA: Portadas ── -->
+      <div class="col-releases reveal">
+        <div class="col-releases-header">
+          <p class="section-label">01 — Últimos Lanzamientos</p>
         </div>
-
-        <div class="noticia-item">
-          <div class="noticia-fecha">Próximamente</div>
-          <div class="noticia-titulo">Placeholder — aquí irá tu noticia</div>
-          <p class="noticia-desc">Agrega aquí el texto de tu noticia cuando tengas contenido real.</p>
-        </div>
-
-        <div class="noticia-item">
-          <div class="noticia-fecha">Próximamente</div>
-          <div class="noticia-titulo">Placeholder — aquí irá tu noticia</div>
-          <p class="noticia-desc">Agrega aquí el texto de tu noticia cuando tengas contenido real.</p>
+        <div class="releases-stack">
+          <a href="#" class="release-item">
+            <div class="cover-frame">
+              <div class="release-cover" style="background-image: url('amorydrogaszrtportada.jpg');"></div>
+              <span class="catalog-tag">GCR — 001</span>
+            </div>
+            <div class="release-info">
+              <span class="release-title">Amor y Drogas</span>
+              <span class="release-artist">Zoret Zt</span>
+            </div>
+          </a>
+          <a href="#" class="release-item">
+            <div class="cover-frame">
+              <div class="release-cover" style="background-image: url('procedimientosparaunalmaconrencorportadanatsu.jpg');"></div>
+              <span class="catalog-tag">GCR — 002</span>
+            </div>
+            <div class="release-info">
+              <span class="release-title">Procedimientos para un alma con rencor</span>
+              <span class="release-artist">Lil Natsu</span>
+            </div>
+          </a>
         </div>
       </div>
 
-      <!-- Video of the Week -->
-      <div class="video-col reveal reveal-delay-1">
-        <p class="video-label">03 — Video de la Semana</p>
-        <div class="video-embed-wrap">
-          <!--
-            ════════════════════════════════════════════════
-            REPRODUCTOR YOUTUBE — para cambiar el video:
-            1. Copia el ID del video de YouTube
-               (lo que va después de ?v= en la URL)
-            2. Reemplaza VIDEO_ID_AQUI por ese ID
-            3. Guarda y sube a GitHub — listo.
-            ════════════════════════════════════════════════
-            <iframe
-              src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
-              allow="accelerometer; autoplay; clipboard-write;
-                     encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen>
-            </iframe>
-          -->
-          <div class="video-placeholder">
-            <div class="video-placeholder-icon">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            </div>
-            <span>Video · próximamente</span>
+      <!-- ── COLUMNA DERECHA: Noticias + Video ── -->
+      <div class="col-right">
+
+        <!-- Noticias -->
+        <div class="reveal reveal-delay-1">
+          <div class="noticias-header">
+            <p class="section-label">02 — Noticias</p>
+          </div>
+          <div class="noticia-item">
+            <div class="noticia-fecha">Próximamente</div>
+            <div class="noticia-titulo">Nuevos lanzamientos en camino</div>
+            <p class="noticia-desc">El colectivo trabaja en nuevo material. Más detalles pronto.</p>
+          </div>
+          <div class="noticia-item">
+            <div class="noticia-fecha">Próximamente</div>
+            <div class="noticia-titulo">Placeholder — aquí irá tu noticia</div>
+            <p class="noticia-desc">Agrega aquí el texto de tu noticia cuando tengas contenido real.</p>
+          </div>
+          <div class="noticia-item">
+            <div class="noticia-fecha">Próximamente</div>
+            <div class="noticia-titulo">Placeholder — aquí irá tu noticia</div>
+            <p class="noticia-desc">Agrega aquí el texto de tu noticia cuando tengas contenido real.</p>
           </div>
         </div>
-        <div class="video-meta">
-          <span class="video-meta-title">Video de la Semana</span>
-          <span class="video-meta-tag">Actualización semanal</span>
-        </div>
-      </div>
 
+        <!-- Video de la Semana -->
+        <div class="video-wrap-block reveal reveal-delay-1">
+          <div class="video-header">
+            <p class="section-label">03 — Video de la Semana</p>
+          </div>
+          <div class="video-embed-wrap">
+            <!--
+              ════════════════════════════════════════════════
+              REPRODUCTOR YOUTUBE — para cambiar el video:
+              1. Copia el ID del video de YouTube
+                 (lo que va después de ?v= en la URL)
+              2. Reemplaza VIDEO_ID_AQUI por ese ID
+              3. Guarda y sube a GitHub — listo.
+              ════════════════════════════════════════════════
+              <iframe
+                src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+                allow="accelerometer; autoplay; clipboard-write;
+                       encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            -->
+            <div class="video-placeholder">
+              <div class="video-placeholder-icon">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+              <span>Video · próximamente</span>
+            </div>
+          </div>
+          <div class="video-meta">
+            <span class="video-meta-title">Video de la Semana</span>
+            <span class="video-meta-tag">Actualización semanal</span>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
